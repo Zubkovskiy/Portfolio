@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="css/style.css">
+  
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="logo">ZBS<span class="animate" style="--i:1;"></span></a>
+
+    <div class="bx bx-menu" id="menu-icon">
+      <span class="animate" style="--i:2;"></span>
+    </div>
+
+    <nav class="navbar">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+
+      <span class="active-nav"></span>
+      <span class="animate" style="--i:2;"></span>
+    </nav>
+  </header>
+  <section class="home show-animate" id="home">
+    <div class="home__content">
+      <h1>Hi, I'm <span>Zubkovskiy Bohdan</span><span class="animate" style="--i:2;"></span></h1>
+      <div class="text__animate">
+        <h3>Frontend Developer</h3>
+        <span class="animate" style="--i:3;"></span>
+      </div>
+      <p>
+        As a passionate and driven Front-End Developer, I specialize in crafting visually impressionable, intuitive, and highly responsive web applications. I thrive on transforming concepts and creative designs into dynamic, interactive websites that not only look exceptional but also deliver flawless user experiences.
+        <span class="animate" style="--i:4;"></span>
+      </p>
+      <div class="sci">
+        <a href="https://github.com/z-b-s" target="_blank"><i class='bx bxl-github' target="_blank"></i></a>
+        <a href="https://t.me/z_b_s" target="_blank"><i class='bx bxl-telegram'></i></a>
+        <a href="https://instagram.com/bodya_zu" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+
+        <span class="animate" style="--i:6;"></span>
+      </div>
+      <div class="btns home__btns">
+        <a href="#contact" class="btn">Hire Me</a>
+        <a href="https://t.me/z_b_s" target="_blank" class="btn">Let's Talk</a>
+        <span class="animate" style="--i:7;"></span>
+      </div>
+    </div>
+    <div class="home__img">
+      <img src="img/photo.jpg" alt="photo">
+      <span class="circle-spin"></span>
+      <span class="animate" style="--i:5;"></span>
+    </div>
+  </section>
+  <section class="about" id="about">
+    <h2 class="heading">About <span>Me</span><span class="animate scroll" style="--i:1;"></span></h2>
+    <div class="about__img">
+      <img src="img/photo.jpg" alt="photo">
+      <span class="circle-spin"></span>
+      <span class="animate" style="--i:2;"></span>
+    </div>
+    <div class="about__content">
+      <h3>Frontend Developer <span class="animate" style="--i:3;"></span></h3>
+      <div class="about__text" id="text">
+        <p>My beginnings in web development began with the study of HTML and CSS, where I immersed myself in the world of creating aesthetically pleasing and intuitive web pages. I quickly realized that web development is not only technology, but also an art that allows me to express my creativity and interact with the user
+
+        I then expanded my skills by learning JavaScript and the React.js framework to build more complex and dynamic web applications. I am passionate about developing interactive features that make the user experience more immersive and convenient. </p> 
+        <p id="hiddenText" class="about__text hidden">I appreciate the opportunity to work in a team where we can share knowledge and ideas and solve technical problems together. I believe that collaboration and feedback are key to success in development. 
+
+        I always strive for self-development and deepening of my skills. I am ready to take on new challenges and learn new technologies to stay up to date with the latest trends in web development. 
+
+        My goal is not only to produce quality code, but also to strike a balance between functionality and visual impact. I strive to create web applications that not only solve user problems, but also leave them with positive emotions.</p>
+        <span class="animate" style="--i:4;"></span>
+      </div>
+    </div>
+    <div class="btns">
+      <a class="btn" id="toggleButton" onclick="toggleText(event)">Read More</a>
+      <span class="animate" style="--i:5;"></span>
+    </div>
+  </section>
+  <section class="skills" id="skills">
+    <h2 class="heading">My <span>Skills</span></h2>
+    <div class="skills__kards">
+
+      <div class="skills__card">
+        <div class="skills__content">
+          <div class="skills__back">
+            <div class="skills__back-content">
+              <img src="img/skills/HTML.png" alt="html">
+              <h4>HTML</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills__card">
+        <div class="skills__content">
+          <div class="skills__back">
+            <div class="skills__back-content">
+              <img src="img/skills/css.svg" alt="css">
+              <h4>CSS</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills__card">
+        <div class="skills__content">
+          <div class="skills__back">
+            <div class="skills__back-content">
+              <img src="img/skills/JS.png" alt="JS">
+              <h4>JS</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills__card">
+        <div class="skills__content">
+          <div class="skills__back">
+            <div class="skills__back-content">
+              <img src="img/skills/React.png" alt="React">
+              <h4>React</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills__card">
+        <div class="skills__content">
+          <div class="skills__back">
+            <div class="skills__back-content">
+              <img src="img/skills/wordpress-tile.svg" alt="wordpress">
+              <h4>WP</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills__card">
+        <div class="skills__content">
+          <div class="skills__back">
+            <div class="skills__back-content">
+              <img src="img/skills/php_plain_logo_icon_146397.png" alt="php">
+              <h4>PHP</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills__card">
+        <div class="skills__content">
+          <div class="skills__back">
+            <div class="skills__back-content">
+              <img src="img/skills/SQL.png" alt="sql">
+              <h4>SQL</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills__card">
+        <div class="skills__content">
+          <div class="skills__back">
+            <div class="skills__back-content">
+              <img src="img/skills/seal-color-aef0354c.png" alt="html">
+              <h4>SCSS/SASS</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills__card">
+        <div class="skills__content">
+          <div class="skills__back">
+            <div class="skills__back-content">
+              <img src="img/skills/git.png" alt="git">
+              <h4>github</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills__card">
+        <div class="skills__content">
+          <div class="skills__back">
+            <div class="skills__back-content">
+              <img src="img/skills/figma.png" alt="figma">
+              <h4>Figma</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="projects" id="projects">
+    <h2 class="heading">My <span>projects</span></h2>
+    <div class="projects__cards">
+      <div class="card">
+        <img src="img/projects/Food-master.png" alt="Food-master">
+        <div class="card__content">
+          <h3>Food-master</h3>
+          <p>HTML, CSS, JS</p>
+          <a href="sites/Food-master/index.html" target="_blank">
+            <i class='bx bx-link-external'></i>
+          </a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="img/projects/hoobank.jpg" alt="hoobank">
+        <div class="card__content">
+          <h3>Hoobank</h3>
+          <p>HTML, CSS</p>
+          <a href="sites/Hoobank-main/build/index.html" target="_blank">
+            <i class='bx bx-link-external'></i>
+          </a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="img/projects/autoExpress.jpg" alt="autoExpress">
+        <div class="card__content">
+          <h3>AutoExpress</h3>
+          <p>HTML, CSS</p>
+          <a href="sites/autoExpress-master/index.html" target="_blank">
+            <i class='bx bx-link-external'></i>
+          </a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="img/projects/RunSmart.png" alt="RunSmart">
+        <div class="card__content">
+          <h3>RunSmart</h3>
+          <p>HTML, CSS</p>
+          <a href="sites/RunSmart/src/index.html" target="_blank">
+            <i class='bx bx-link-external'></i>
+          </a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="img/projects/Xiaomi-Himo-C26.jpg" alt="hooXiaomi-Himo-C26bank">
+        <div class="card__content">
+          <h3>Xiaomi-Himo-C26</h3>
+          <p>HTML, CSS</p>
+          <a href="sites/Xiaomi Himo C26/index.html" target="_blank">
+            <i class='bx bx-link-external'></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contact" id="contact">
+    <h2 class="heading">Contact <span>Me!</span></h2>
+    <form id="contact-form" method="POST" >
+      <div class="input__box">
+        <div class="input__field">
+          <input type="text" placeholder="Full Name" required name="name" id="name">
+          <span class="focus"></span>
+        </div>
+        <div class="input__field">
+          <input placeholder="Mobile Number" required id="phon" type="number" name="phon">
+          <span class="focus"></span>
+        </div>
+      </div>
+      <div class="textarea__field">
+        <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+        <span class="focus"></span>
+      </div>
+      <div class="btns">
+        <button type="submit" class="btn" id="submit">Submit</button>
+      </div>
+    </form>
+  </section>
+  <footer class="footer">
+    <div class="sci footer__sci">
+      <a href="https://github.com/z-b-s" target="_blank"><i class='bx bxl-github'></i></a>
+      <a href="https://t.me/z_b_s" target="_blank"><i class='bx bxl-telegram'></i></a>
+      <a href="https://instagram.com/bodya_zu" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+    </div>
+    <div class="footer__iconTop">
+      <a href="#"><i class='bx bx-up-arrow-alt'></i></a>
+    </div>
+  </footer>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

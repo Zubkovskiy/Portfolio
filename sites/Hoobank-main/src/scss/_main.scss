@@ -1,0 +1,202 @@
+.section {
+  &__main {
+    position: relative;
+    margin-top: 190px;
+    @media (max-width: $breakpoint1300) {
+      margin-top: 160px;
+    }
+    @media (max-width: $breakpoint992) {
+      margin-top: 80px;
+    }
+    @media (max-width: $breakpoint768) {
+      margin-top: 30px;
+    }
+    @media (max-width: $breakpoint480) {
+      margin-top: 20px;
+    }
+    &-img {
+      position: absolute;
+      right: 0;
+      top: -280px;
+      z-index: -1;
+      @media (max-width: $breakpoint1300) {
+        max-width: 550px;
+        top: -126px;
+      @media (max-width: $breakpoint992) {
+        top: unset;
+        bottom: 0;
+        max-width: 400px;
+      }
+      @media (max-width: $breakpoint768) {
+        max-width: 300px;
+      }
+      @media (max-width: $breakpoint480) {
+        max-width: 250px;
+      }
+    }
+    }
+  }
+  &__blink {
+    position: absolute;
+    width: 195px;
+    height: 324px;
+    left: -65px;
+    top: 48px;
+    background: #FFFFFF;
+    filter: blur(225px);
+    @media (max-width: $breakpoint1300) {
+      width: 185px;
+      height: 300px;
+      top: -22px;
+      left: -50px;
+    }
+  }
+}
+
+.main {
+  position: relative;
+  @media (max-width: $breakpoint992) {
+    padding: 0 50px 400px 50px;
+  }
+  @media (max-width: $breakpoint768) {
+    padding: 0 50px 320px 50px;
+  }
+  @media (max-width: $breakpoint480) {
+    padding: 0 0 230px 0;
+  }
+  &__discount {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 408px;
+    height: 38px;
+    padding: 4px 10px;
+    border-radius: 10px;
+    // background: #11101D;
+    background: linear-gradient(125.17deg, #272727 0%, #11101D 100%);
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 150%;
+    @media (max-width: $breakpoint992) {
+      font-size: 16px;
+      width: 368px;
+    }
+    @media (max-width: $breakpoint768) {
+      font-size: 13px;
+      font-size: 11px;
+      max-width: 268px;
+    }
+    @media (max-width: $breakpoint480) {
+      font-size: 9px;
+      max-width: 224px;
+    }
+    span {
+      opacity: .7;
+    }
+  }
+  &__title {
+    max-width: 670px;
+    margin-top: 16px;
+    font-weight: 600;
+    font-size: 72px;
+    line-height: 140%;
+    letter-spacing: 0.01em;
+    span {
+      background: radial-gradient(64.18% 64.18% at 71.16% 35.69%, #DEF9FA 0.89%, #BEF3F5 17.23%, #9DEDF0 42.04%, #7DE7EB 55.12%, #5CE1E6 71.54%, #33BBCF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    @media (max-width: $breakpoint1300) {
+      font-size: 60px;
+      max-width: 600px;
+    }
+    @media (max-width: $breakpoint992) {
+      font-size: 50px;
+      max-width: 500px;
+    }
+    @media (max-width: $breakpoint768) {
+      font-size: 37px;
+      max-width: 380px;;
+    }
+    @media (max-width: $breakpoint480) {
+      font-size: 30px;
+      max-width: 300px;;
+    }
+  }
+  &__started {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 56px;
+    right: 580px;
+    width: 140px;
+    height: 140px;
+    padding: 32px;
+    border: 2px solid; 
+    border-radius: 100px;
+    background: linear-gradient(157.81deg, #DEF9FA -43.27%, #BEF3F5 -21.24%, #9DEDF0 12.19%, #7DE7EB 29.82%, #5CE1E6 51.94%, #33BBCF 90.29%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-color: #00F6FF;
+    @media (max-width: $breakpoint1300) {
+      left: 370px;
+      right: 0;
+    }
+    @media (max-width: $breakpoint768) {
+      left: 280px;
+      top: 52px;
+      width: 100px;
+      height: 100px;
+    }
+    @media (max-width: $breakpoint480) {
+      left: 184px;
+      width: 80px;
+      height: 80px;
+    }
+    &-wrapp {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 130%;
+      cursor: pointer;
+      @media (max-width: $breakpoint480) {
+        font-size: 16px;
+      }
+    }
+    &:hover {
+      img {
+        transform: translate(5px, -5px);
+        transition: all .3s ease;
+      }
+    }
+  }
+  &__subtitle {
+    margin-top: 40px;
+    width: 480px;
+    font-size: 18px;
+    line-height: 170%;
+    color: $primary;
+    @media (max-width: $breakpoint1300) {
+      font-size: 16px;
+    }
+    @media (max-width: $breakpoint992) {
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 160%;
+    }
+    @media (max-width: $breakpoint768) {
+      max-width: 380px;
+      font-size: 12px;
+      line-height: 150%;
+    }
+    @media (max-width: $breakpoint480) {
+      max-width: 254px;
+    }
+  }
+}
