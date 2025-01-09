@@ -803,6 +803,7 @@ section {
   .home__img {
     width: 22rem;
     height: 22rem;
+    margin-top: 2rem;
 }
 
   .home__content h1 {
