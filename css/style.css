@@ -34,7 +34,7 @@ section {
 }
 
 .header {
-  position: fixed;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,6 +48,7 @@ section {
 }
 
 .header.sticky {
+  position: fixed;
   background: #ffffff10;
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(12px);
