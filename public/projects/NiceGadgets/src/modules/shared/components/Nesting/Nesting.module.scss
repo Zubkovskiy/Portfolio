@@ -1,0 +1,73 @@
+@use '../../utils/mixins.scss' as *;
+
+.wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  margin-bottom: 40px;
+  padding-top: 24px;
+
+  @include respond-to(mobile) {
+    margin-bottom: 24px;
+  }
+}
+
+.home,
+.arrow {
+  display: flex;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    transition: var(--transition);
+  }
+}
+
+.home {
+  cursor: pointer;
+
+  &::before {
+    background-color: var(--gray-white);
+    mask: url('/img/icons/home.svg') no-repeat center / contain;
+    -webkit-mask: url('/img/icons/home.svg') no-repeat center / contain;
+  }
+
+  &:hover::before {
+    background-color: var(--accent);
+  }
+}
+
+.arrow {
+  opacity: 0.5;
+
+  &::before {
+    content: url('/img/icons/arrow-right.svg');
+  }
+}
+
+.category {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-secondary);
+  text-transform: capitalize;
+  transition: var(--transition);
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.active {
+  cursor: pointer;
+  color: var(--gray-white);
+}
+
+.name {
+  overflow: hidden;
+  color: var(--gray-secondary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

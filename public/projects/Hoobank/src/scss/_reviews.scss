@@ -1,0 +1,121 @@
+.section__reviews {
+  margin-top: 170px;
+  @media (max-width: $breakpoint1120) {
+    margin-top: 140px;
+  }
+  @media (max-width: $breakpoint992) {
+    margin-top: 80px;
+  }
+}
+.reviews {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+    &__blink {
+      position: absolute;
+      width: 436.52px;
+      height: 544.07px;
+      background: linear-gradient(90deg, #1A2980 0%, #26D0CE 100%);
+      filter: blur(325px);
+      border-radius: 200px;
+      transform: rotate(47.46deg);
+      top: 38px;
+      right: -440px;
+      z-index: -1;
+    }
+    &__txt {
+    display: flex;
+    align-items: center;
+    max-width: 1050px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @media (max-width: $breakpoint992) {
+      justify-content: center;
+      gap: 30px;
+    }
+    @media (max-width: $breakpoint480) {
+      margin-bottom: 20px;
+    }
+      &-title {
+        display: flex;
+        flex-direction: column;
+        max-width: 450px;
+        @media (max-width: $breakpoint1120) {
+          max-width: 320px;
+        }
+        @media (max-width: $breakpoint992) {
+          flex-wrap: wrap;
+        }
+      }
+      &-subtitle {
+        max-width: 450px;
+        @media (max-width: $breakpoint992) {
+          margin-top: 10px;
+        }
+      }
+    }
+    &__cards {
+      display: flex;
+      gap: 4px;
+      margin-top: 80px;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      @media (max-width: $breakpoint992) {
+        margin-top: 20px;
+      }
+    }
+    &__card {
+      position: relative;
+      width: 370px;
+      min-height: 395px;
+      padding: 60px 40px;
+      border-radius: 20px;
+      &:hover {
+        background: linear-gradient(144.39deg, #FFFFFF -278.56%, #6D6D6D -78.47%, #11101D 91.61%);
+        backdrop-filter: blur(5px);
+        transition: all .3s ease;
+      }
+      @media (max-width: $breakpoint992) {
+        padding: 40px 30px;
+        min-height: 370px;
+      }
+      @media (max-width: $breakpoint480) {
+        padding: 0 30px;
+        min-height: 300px;;
+      }
+      &-txt {
+        margin-top: 40px;
+        font-size: 18px;
+        line-height: 180%;
+        letter-spacing: 0.02em;
+        padding-bottom: 76px;
+        @media (max-width: $breakpoint480) {
+          font-size: 16px;
+        }
+      }
+    }
+    &__items {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      left: 40px;
+      bottom: 62px;
+      @media (max-width: $breakpoint480) {
+        bottom: 40px;
+      }
+      &-img {
+        width: 48px;
+        height: 48px;
+      }
+      &-wrapp {
+        margin-left: 16px;
+      }
+      &-name {
+        font-size: 20px;
+        line-height: 32px;
+      }
+      &-skils {
+        opacity: .5;
+      }
+    }
+  }

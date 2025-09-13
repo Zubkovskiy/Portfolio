@@ -1,0 +1,124 @@
+@use "../../../shared/utils/mixins.scss" as *;
+
+.decor {
+  width: 100%;
+  height: 1px;
+  background: var(--gray-elements);
+}
+
+.footer {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  max-width: var(--container);
+  height: 96px;
+  margin: 0 auto;
+
+  @include respond-to(tablet) {
+    padding: 0 24px;
+  }
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+    align-items: flex-start;
+    height: 257px;
+    padding: 32px 16px;
+  }
+}
+
+.logo {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  & img {
+    cursor: pointer;
+  }
+
+  @include respond-to(mobile) {
+    height: 32px;
+    margin-bottom: 32px;
+  }
+}
+
+.links {
+  cursor: pointer;
+
+  display: flex;
+  gap: 106.8px;
+  align-items: center;
+
+  height: 100%;
+
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 92%;
+  color: var(--gray-white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+
+  & a {
+    cursor: pointer;
+  }
+
+  @include respond-to(tablet) {
+    gap: 13.5px;
+  }
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.scroll {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  &__img_wrap {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    background: var(--gray-surface-2);
+
+    transition: var(--transition);
+
+    & img {
+      cursor: pointer;
+    }
+  }
+
+  &:hover .scroll__img_wrap {
+    background: var(--gray-icons-placeholders);
+    transition: var(--transition);
+  }
+
+  &:active .scroll__img_wrap {
+    background: var(--accent);
+  }
+
+  &__txt {
+    font-family: var(--font-family);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray-secondary);
+    text-align: right;
+  }
+
+  @include respond-to(mobile) {
+    justify-content: center;
+    width: 100%;
+  }
+}

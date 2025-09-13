@@ -1,0 +1,103 @@
+@use '../../../shared/utils/mixins.scss' as *;
+
+.description {
+  display: flex;
+  justify-content: space-between;
+  gap: 65px;
+
+  margin-top: 80px;
+
+  @include respond-to(tablet) {
+    flex-direction: column;
+  }
+
+  @include respond-to(mobile) {
+    margin-top: 56px;
+    gap: 56px;
+  }
+}
+
+.about {
+  max-width: 560px;
+
+  @include respond-to(tablet) {
+    max-width: 100%;
+  }
+}
+
+.specs {
+  width: 100%;
+}
+
+.name {
+  margin-bottom: 16px;
+
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 140%;
+  color: var(--gray-white);
+}
+
+.wrapper:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gray-white);
+
+  @include respond-to(mobile) {
+    font-size: 16px;
+  }
+}
+
+.text {
+  margin-top: 16px;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 150%;
+  color: var(--gray-secondary);
+
+  & p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+}
+
+.specs_list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.specs_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  width: 100%;
+}
+
+.left {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 150%;
+  color: var(--gray-secondary);
+}
+
+.right {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 150%;
+  text-align: right;
+  color: var(--gray-white);
+}
+
+.line {
+  @include line;
+
+  margin-bottom: 32px;
+}

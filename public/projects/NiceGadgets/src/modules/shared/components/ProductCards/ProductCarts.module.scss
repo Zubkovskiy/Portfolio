@@ -1,0 +1,88 @@
+@use '../../utils/mixins.scss' as *;
+
+.carts {
+  display: grid;
+  justify-items: center;
+  gap: 40px 16px;
+
+  grid-template-columns: repeat(auto-fill, minmax(229px, 1fr));
+
+  @include respond-to(mobile) {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+}
+
+.pagination {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+
+  margin: 40px 0 80px;
+
+  .numbers {
+    display: flex;
+    gap: 8px;
+  }
+
+  button {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    border: none;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 150%;
+    color: white;
+
+    background: var(--gray-surface-1);
+
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background: var(--gray-elements);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
+  }
+
+  .arrow {
+    padding: 8px;
+    background: var(--gray-surface-2);
+
+    &::before {
+      content: '';
+
+      display: inline-block;
+
+      width: 16px;
+      height: 16px;
+
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    &--left::before {
+      background-image: url('/img/icons/arrow-left.svg');
+    }
+
+    &--right::before {
+      background-image: url('/img/icons/arrow-right.svg');
+    }
+  }
+
+  .active {
+    background-color: var(--accent);
+  }
+}
+

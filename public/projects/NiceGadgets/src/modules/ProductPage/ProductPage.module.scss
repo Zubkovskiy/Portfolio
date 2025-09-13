@@ -1,0 +1,25 @@
+.product {
+  &__options {
+    display: flex;
+    margin-top: 40px;
+  }
+
+  &__select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 176px;
+    height: 40px;
+    border: none;
+
+    color: #fff;
+
+    background: var(--gray-surface-1);
+  }
+
+  &__cards {
+    margin-top: 24px;
+    margin-bottom: 40px;
+  }
+}

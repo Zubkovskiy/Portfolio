@@ -1,0 +1,60 @@
+@use '../../../../modules/shared/utils/mixins.scss' as *;
+
+.header {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+
+  height: 64px;
+  border-bottom: 1px solid var(--gray-elements);
+
+  background: var(--gray-black);
+
+  &__nav_bar {
+    display: flex;
+    height: 100%;
+  }
+
+  &__activity {
+    display: flex;
+    margin-left: auto;
+  }
+
+  @include respond-to(tablet) {
+    height: 48px;
+  }
+
+  @include respond-to(mobile) {
+    &__nav_bar,
+    &__activity {
+      display: none;
+    }
+  }
+}
+
+.logo {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+  margin: 0 24px;
+
+  & img {
+    cursor: pointer;
+  }
+
+  @include respond-to(tablet) {
+    margin: 0 16px;
+
+    & img {
+      cursor: pointer;
+      width: 64px;
+      height: 22px;
+    }
+  }
+}

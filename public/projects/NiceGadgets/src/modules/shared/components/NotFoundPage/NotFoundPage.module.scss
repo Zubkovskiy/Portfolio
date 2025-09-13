@@ -1,0 +1,19 @@
+.title {
+  padding-top: 60px;
+  font-size: xxx-large;
+  font-weight: 600;
+  text-align: center;
+  height: 500px;
+
+  &::after {
+    content: "";
+    display: block;
+    margin-top: 60px;
+    background-image: url('/img/page-not-found.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100%;
+    height: 280px;
+  }
+}

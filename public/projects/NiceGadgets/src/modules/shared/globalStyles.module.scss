@@ -1,0 +1,39 @@
+@use "../shared/utils/mixins.scss" as *;
+
+.title {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 117%;
+  letter-spacing: -0.01em;
+
+  @include respond-to(mobile) {
+    font-size: 32px;
+    line-height: 128%;
+  }
+}
+
+.subtitle {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 128%;
+  letter-spacing: -0.01em;
+
+  @include respond-to(mobile) {
+    font-size: 22px;
+    line-height: 140%;
+    letter-spacing: normal;
+  }
+}
+
+.button {
+  width: 32px;
+  height: 32px;
+  background: var(--gray-surface-2);
+}
+
+.no_products {
+  padding-top: 60px;
+  font-size: xxx-large;
+  font-weight: 600;
+  text-align: center;
+}
