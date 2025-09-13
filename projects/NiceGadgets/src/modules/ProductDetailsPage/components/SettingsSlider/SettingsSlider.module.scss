@@ -1,0 +1,152 @@
+@use '../../../shared/utils/mixins.scss' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+
+  @include respond-to(tablet) {
+    width: 50%;
+    min-width: 237px;
+  }
+
+  @include respond-to(mobile) {
+    width: 100%;
+  }
+}
+
+.title {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-secondary);
+
+  &:not(:first-child) {
+    margin-top: 24px;
+  }
+}
+
+.list {
+  display: flex;
+  gap: 16px;
+  max-width: 320px;
+  margin-bottom: 24px;
+}
+
+.circle {
+  cursor: pointer;
+
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--gray-black);
+  border-radius: 50%;
+
+  outline: 1px solid var(--gray-elements);
+  outline-offset: 0;
+
+  transition: border 0.2s, outline 0.2s;
+
+  &:hover {
+    outline: 1px solid var(--gray-secondary);
+  }
+}
+
+.active {
+  outline: 1px solid var(--gray-white);
+
+  &:hover {
+    outline: 1px solid var(--gray-white);
+  }
+}
+
+.capacity {
+  cursor: pointer;
+
+  padding: 7px 8px;
+  border: 1px solid var(--gray-icons-placeholders);
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 150%;
+  color: var(--gray-white);
+  text-align: center;
+
+  background-color: transparent;
+
+  transition: var(--transition);
+}
+
+.capacity:hover {
+  border-color: #444;
+}
+
+.capacity.active {
+  display: flex;
+  align-items: center;
+  border: none;
+  color: var(--gray-black);
+  background: var(--gray-white);
+  outline: none;
+}
+
+.line {
+  content: '';
+  display: block;
+  width: 100%;
+  border: 1px solid var(--gray-elements);
+}
+
+.price {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 24px;
+
+  &__discount {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 128%;
+    color: var(--gray-white);
+    letter-spacing: -0.01em;
+  }
+
+  &__regular {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gray-secondary);
+    text-decoration: line-through;
+  }
+}
+
+.characteristics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+
+  margin-top: 32px;
+
+  &__items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  &__left {
+    color: var(--gray-secondary);
+  }
+
+  &__right {
+    color: var(--gray-white);
+  }
+}
+
+.description {
+  display: flex;
+  gap: 65px;
+}

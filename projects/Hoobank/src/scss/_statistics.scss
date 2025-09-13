@@ -1,0 +1,48 @@
+.section__statistics {
+  margin-top: 142px;
+  @media (max-width: $breakpoint992) {
+    margin-top: 62px;
+  }
+}
+.statistics {
+  max-width: 100%;
+  display: flex; 
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap-reverse;
+  gap: 10px;
+  &__items {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    @media (max-width: $breakpoint768) {
+      gap: 15px;
+    }
+  }
+  &__quantity {
+    font-weight: 600;
+    font-size: 40.8925px;
+    line-height: 130%;
+    @media (max-width: $breakpoint1300) {
+      font-size: 36px;
+    }
+    @media (max-width: $breakpoint992) {
+      font-size: 24px;
+    }
+  }
+  &__title {
+    font-size: 20.4463px;
+    line-height: 130%;
+    text-transform: uppercase;
+    background: radial-gradient(64.18% 64.18% at 71.16% 35.69%, #DEF9FA 0.89%, #BEF3F5 17.23%, #9DEDF0 42.04%, #7DE7EB 55.12%, #5CE1E6 71.54%, #33BBCF 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    @media (max-width: $breakpoint1300) {
+      font-size: 18px;
+    }
+    @media (max-width: $breakpoint1300) {
+      font-size: 15px;
+    }
+  }
+}

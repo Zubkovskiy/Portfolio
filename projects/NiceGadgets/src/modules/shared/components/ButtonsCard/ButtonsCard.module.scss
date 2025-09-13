@@ -1,0 +1,82 @@
+@use '../../../shared/utils/mixins.scss' as *;
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+  transition: var(--transition-base);
+}
+
+.cart {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  width: 160px;
+  height: 48px;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 150%;
+  color: var(--gray-white);
+  text-align: center;
+  cursor: pointer;
+  background: var(--accent);
+  transition: var(--transition-base);
+
+  &:hover {
+    background: var(--accent-hover);
+  }
+
+  @include respond-to(tablet) {
+    width: 125px;
+  }
+
+  @include respond-to(mobile) {
+    width: 100px;
+  }
+}
+
+.active_cart {
+  background: var(--gray-surface-2);
+}
+
+.favorite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+
+  width: 48px;
+  height: 48px;
+
+  cursor: pointer;
+  background: var(--gray-surface-2);
+  transition: var(--transition-base);
+
+  &::before {
+    cursor: pointer;
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url('/img/icons/favourites.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &:hover {
+    background: var(--gray-icons-placeholders);
+  }
+}
+
+.active_favorite {
+  background: var(--gray-surface-1);
+  border: 1px solid var(--gray-surface-2);
+
+  &::before {
+    background-image: url('/img/icons/favourites-filled.svg');
+  }
+}

@@ -1,0 +1,1 @@
+export { SettingsSlider } from './SettingsSlider';

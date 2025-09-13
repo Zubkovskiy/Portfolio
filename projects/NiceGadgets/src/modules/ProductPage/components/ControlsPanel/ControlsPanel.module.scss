@@ -1,0 +1,41 @@
+@use '../../../shared/utils/mixins' as *;
+
+.panel {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+
+  &__item {
+    display: flex;
+
+    &_sort {
+      width: 187px;
+    }
+
+    &_perPage {
+      width: 136px;
+    }
+
+    @include respond-to(mobile) {
+      &_sort {
+        width: 100%;
+      }
+
+      &_perPage {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-secondary);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

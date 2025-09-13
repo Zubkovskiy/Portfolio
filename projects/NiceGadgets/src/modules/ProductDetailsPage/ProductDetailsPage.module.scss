@@ -1,0 +1,62 @@
+@use '../shared/utils/mixins.scss' as *;
+
+.back {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-white);
+
+  &::before {
+    content: '';
+    display: inline-flex;
+
+    width: 16px;
+    height: 16px;
+
+    background-image: url('../../../public/img/icons/arrow-left.svg');
+  }
+}
+
+.name {
+  margin-bottom: 40px;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 128%;
+  color: var(--gray-white);
+  letter-spacing: -0.01em;
+
+  @include respond-to(mobile) {
+    font-size: 22px;
+    line-height: 140%;
+  }
+}
+
+.slider_wrapper {
+  display: flex;
+  gap: 64px;
+  align-items: stretch;
+  max-height: 435px;
+
+  @include respond-to(tablet) {
+    gap: 17px;
+  }
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    max-height: 100%;
+  }
+}
+
+.products_slider {
+  margin: 80px 0;
+
+  @include respond-to(mobile) {
+    margin: 56px 0;
+  }
+}

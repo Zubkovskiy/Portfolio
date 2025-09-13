@@ -1,0 +1,38 @@
+.section__deal {
+  margin-top: 180px;
+  @media (max-width: $breakpoint992) {
+    margin-top: 80px;
+  }
+}
+
+.deal {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: $breakpoint992) {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+  }
+  &__main {
+    display: flex;
+    flex-direction: column;
+    width: 570px;
+    margin-right: 15px;
+    @media (max-width: $breakpoint992) {
+      margin: auto;
+      align-items: center;
+    }
+    &-title {
+      padding-top: 20px;
+    }
+    &-subtitle {
+      max-width: 500px;
+      margin-bottom: 17px;
+    }
+  }
+  &__img {
+    @media (max-width: $breakpoint1300) {
+      max-width: 100%;
+    }
+  }
+}

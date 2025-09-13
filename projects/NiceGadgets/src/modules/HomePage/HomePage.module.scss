@@ -1,0 +1,61 @@
+@use "../shared/utils/mixins.scss" as *;
+
+.home {
+  margin-top: 56px;
+
+  @include respond-to(tablet) {
+    margin-top: 32px;
+  }
+
+  @include respond-to(mobile) {
+    margin-top: 24px;
+  }
+}
+
+.main_slider {
+  margin-top: 66px;
+
+  @include respond-to(tablet) {
+    margin-top: 32px;
+  }
+
+  @include respond-to(mobile) {
+    margin-top: 24px;
+  }
+}
+
+.new_models {
+  margin-top: 70px;
+
+  @include respond-to(tablet) {
+    margin-top: 64px;
+  }
+
+  @include respond-to(mobile) {
+    margin-top: 56px;
+  }
+}
+
+.category {
+  margin-top: 80px;
+
+  @include respond-to(tablet) {
+    margin-top: 64px;
+  }
+
+  @include respond-to(mobile) {
+    margin-top: 56px;
+  }
+}
+
+.hot_prices {
+  margin: 80px 0 62px;
+
+  @include respond-to(tablet) {
+    margin: 64px 0;
+  }
+
+  @include respond-to(mobile) {
+    margin-top: 56px;
+  }
+}
