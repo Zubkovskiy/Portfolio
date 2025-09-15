@@ -1,13 +1,13 @@
 [
-  { "name": "JavaScript", "img": "img/icons/skills/javascript.png" },
-  { "name": "TypeScript", "img": "img/icons/skills/typescript.png" },
-  { "name": "React", "img": "img/icons/skills/react.png" },
-  { "name": "Next.js", "img": "img/icons/skills/nextjs.png" },
-  { "name": "CSS", "img": "img/icons/skills/css.png" },
-  { "name": "Sass", "img": "img/icons/skills/sass.png" },
-  { "name": "Tailwind CSS", "img": "img/icons/skills/tailwind.png" },
-  { "name": "Zustand", "img": "img/icons/skills/zustand.png" },
-  { "name": "Figma", "img": "img/icons/skills/figma.png" },
-  { "name": "GitHub", "img": "img/icons/skills/github.png" },
-  { "name": "Rest API", "img": "img/icons/skills/restapi.png" }
+  { "name": "JavaScript", "img": "/img/icons/skills/javascript.png" },
+  { "name": "TypeScript", "img": "/img/icons/skills/typescript.png" },
+  { "name": "React", "img": "/img/icons/skills/react.png" },
+  { "name": "Next.js", "img": "/img/icons/skills/nextjs.png" },
+  { "name": "CSS", "img": "/img/icons/skills/css.png" },
+  { "name": "Sass", "img": "/img/icons/skills/sass.png" },
+  { "name": "Tailwind CSS", "img": "/img/icons/skills/tailwind.png" },
+  { "name": "Zustand", "img": "/img/icons/skills/zustand.png" },
+  { "name": "Figma", "img": "/img/icons/skills/figma.png" },
+  { "name": "GitHub", "img": "/img/icons/skills/github.png" },
+  { "name": "Rest API", "img": "/img/icons/skills/restapi.png" }
 ]
