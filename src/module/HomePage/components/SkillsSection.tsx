@@ -20,7 +20,11 @@ export const SkillsSection: React.FC<SkillsProps> = ({ skills }) => {
              border-b-8 border-[var(--color-primary)] font-bold text-xl 
              transition-all hover:scale-105 duration-300"
           >
-            <img src={skill.img} alt={skill.name} className="h-12 sm:h-20" />
+            <img
+              src={`${import.meta.env.BASE_URL}${skill.img}`}
+              alt={skill.name}
+              className="h-12 sm:h-20"
+            />
             <p className="text-center text-base">{skill.name}</p>
 
             <span

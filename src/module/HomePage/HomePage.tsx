@@ -8,7 +8,9 @@ export const HomePage = () => {
 
   useEffect(() => {
     const fetchSkills = async () => {
-      const response = await fetch("/api/skills.json");
+      const response = await fetch(
+        `${import.meta.env.BASE_URL}/api/skills.json`
+      );
       const data = await response.json();
 
       setSkills(data);
@@ -24,4 +26,4 @@ export const HomePage = () => {
       <AboutMe />
     </div>
   );
-}
+};

@@ -19,7 +19,7 @@ export const ProjectCard: React.FC<ProjectProps> = ({ project, oddNumber }) => {
     >
       <a href={project.link} target="_blank" className="w-full sm:w-2/3 h-full sm:h-full">
         <img
-          src={project.image}
+          src={`${import.meta.env.BASE_URL}${project.image}`}
           alt={project.title}
           className="h-full w-full mx-auto rounded-3xl object-cover object-center"
         />
@@ -42,7 +42,7 @@ export const ProjectCard: React.FC<ProjectProps> = ({ project, oddNumber }) => {
           className="hover:scale-110 transition-transform duration-300"
         >
           <img
-            src="/img/icons/open.svg"
+            src={`${import.meta.env.BASE_URL}/img/icons/open.svg`}
             alt="open"
             className="h-10 text-left"
           />

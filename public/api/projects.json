@@ -4,7 +4,7 @@
     "link": "https://zubkovskiy.github.io/layout_landing-page/",
     "title": "MyBike",
     "description": "Shift your ride, not gears. Find the fastest way to move in the city as the bike adapts intuitively to power the speed you need.",
-    "image": "/public/img/projects/MyBike.jpg",
+    "image": "/img/projects/MyBike.jpg",
     "technologies": ["HTML", "SCSS"]
   },
   {
@@ -12,7 +12,7 @@
     "link": "/projects/Hoobank/build/index.html",
     "title": "Hoobank",
     "description": "Our team of experts uses a methodology to identify the credit cards most likely to fit your needs.We examine annual percentage rates, annual fees.",
-    "image": "/public/img/projects/hoobank.jpg",
+    "image": "/img/projects/hoobank.jpg",
     "technologies": ["HTML", "CSS"]
   },
   {
@@ -20,7 +20,7 @@
     "link": "/projects/AutoExpress/index.html",
     "title": "Auto Express",
     "description": "Підбір, покупка, доставка, розмитнення, ремонт, оформлення за договором, КОНСУЛЬТАЦІЯ ЕКСПЕРТА",
-    "image": "/public/img/projects/autoExpress.jpg",
+    "image": "/img/projects/autoExpress.jpg",
     "technologies": ["HTML", "CSS"]
   },
   {
@@ -28,7 +28,7 @@
     "link": "/projects/Xiaomi-Himo/index.html",
     "title": "Xiaomi Himo",
     "description": "Повна свобода пересування та надійний транспорт для подорожей на будь-які відстані",
-    "image": "/public/img/projects/Xiaomi-Himo-C26.jpg",
+    "image": "/img/projects/Xiaomi-Himo-C26.jpg",
     "technologies": ["HTML", "CSS"]
   }
 ]

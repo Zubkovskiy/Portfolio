@@ -7,7 +7,7 @@ export const HomeSection = () => {
       <div className="relative">
         <img
           className="w-40 h-40 sm:w-60 sm:h-60 object-cover mx-auto rounded-full"
-          src="/img/my-image.jpg"
+          src={`${import.meta.env.BASE_URL}/img/my-image.jpg`}
           alt="my image"
         />
         <span className="absolute -top-5 sm:top-0 -left-18 sm:-left-30 border p-1 sm:p-3 rounded-l-2xl rounded-tr-2xl border-[var(--color-text)] animate-emergence">
@@ -32,36 +32,5 @@ export const HomeSection = () => {
       </Link>
       <RunningLine main />
     </section>
-
-    // <section className="relative h-[calc(100vh-3.75rem)] w-full flex flex-col justify-center items-center">
-    //   <div className="relative">
-    //     <img
-    //       className="w-60 h-60 object-cover mx-auto rounded-full"
-    //       src="/img/my-image.jpg"
-    //       alt="my image"
-    //     />
-    //     <span className="absolute top-0 -left-30 border p-3 rounded-l-2xl rounded-tr-2xl border-[var(--color-text)] animate-emergence">
-    //       Hello There!
-    //     </span>
-    //   </div>
-    //   <h1 className="text-center mt-6 text-4xl font-bold">
-    //     I'm Zubkovskiy Bohdan,
-    //   </h1>
-    //   <h2 className="mt-2 md:mt-2.5 text-center text-4xl text-primary font-bold">
-    //     Front-end Developer
-    //   </h2>
-    //   <p className="mt-6 md:mt-8 mx-auto text-center text-2xl max-w-200 opacity-70">
-    //     I am a ambitious Frontend developer with a great desire to create
-    //     creative web applications and interactive user interfaces.
-    //   </p>
-    //   <a
-    //     href="https://t.me/z_b_s"
-    //     target="_blank"
-    //     className="flex items-center  justify-center mt-8 border-2 w-40 h-12 border-[var(--color-primary)] rounded-lg text-xl font-semibold hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] transition-colors duration-300 cursor-pointer"
-    //   >
-    //     Let's Talk
-    //   </a>
-    //   <RunningLine main />
-    // </section>
   );
 };

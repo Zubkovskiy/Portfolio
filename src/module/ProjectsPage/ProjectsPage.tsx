@@ -6,8 +6,9 @@ export const ProjectsPage = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const response = await fetch("/public/api/projects.json");
+      const response = await fetch(`${import.meta.env.BASE_URL}/api/projects.json`);
       const data = await response.json();
+
       setProjects(data);
     };
     fetchProjects();
