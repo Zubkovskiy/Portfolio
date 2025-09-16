@@ -38,7 +38,7 @@ export const ProjectCard: React.FC<ProjectProps> = ({ project, oddNumber }) => {
           {project.technologies.map((tech) => (
             <li
               key={tech}
-              className="flex justify-center items-center flex-wrap p-2 w-20 lg:w-30 font-bold bg-[var(--color-primary)] rounded-2xl text-[var(--color-background)]"
+              className="flex justify-center items-center flex-wrap p-2 2xl:w-30 font-bold bg-[var(--color-primary)] rounded-2xl text-[var(--color-background)]"
             >
               {tech}
             </li>
