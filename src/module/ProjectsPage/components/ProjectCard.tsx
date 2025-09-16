@@ -17,15 +17,24 @@ export const ProjectCard: React.FC<ProjectProps> = ({ project, oddNumber }) => {
         }
       )}
     >
-      <a href={project.link} target="_blank" className="w-full sm:w-2/3 h-full sm:h-full">
+      <a
+        href={
+          project.link.startsWith("http")
+            ? project.link
+            : `${import.meta.env.BASE_URL}${project.link}`
+        }
+        rel="noopener noreferrer"
+        className="w-full sm:w-2/3 h-full sm:h-full"
+      >
         <img
           src={`${import.meta.env.BASE_URL}${project.image}`}
           alt={project.title}
           className="h-full w-full mx-auto rounded-3xl object-cover object-center"
         />
       </a>
+
       <div className="flex items-center flex-col gap-2 sm:gap-4 w-full sm:w-1/3">
-        <ul className="flex gap-4">
+        <ul className="flex justify-center flex-wrap gap-4">
           {project.technologies.map((tech) => (
             <li
               key={tech}
@@ -35,8 +44,10 @@ export const ProjectCard: React.FC<ProjectProps> = ({ project, oddNumber }) => {
             </li>
           ))}
         </ul>
+
         <p className="text-2xl md:text-3xl font-bold">{project.title}</p>
         <p className="text-lg opacity-70 text-center">{project.description}</p>
+
         <a
           href={project.link}
           className="hover:scale-110 transition-transform duration-300"
