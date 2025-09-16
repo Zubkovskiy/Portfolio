@@ -10,7 +10,8 @@ type SkillsProps = {
 export const SkillsSection: React.FC<SkillsProps> = ({ skills }) => {
   return (
     <section className="relative flex flex-col items-center mt-10 md:mt-20">
-      <h2 className="text-2xl font-bold text-center">Skills</h2>
+      <h2 className="text-4xl font-bold text-center">Skills</h2>
+
       <ul className="flex flex-wrap justify-center xl:w-2/3 mt-8 sm:mt-10 md:mt-20 gap-x-8 md:gap-x-10 lg:md:gap-x-16 gap-y-8 list-inside text-lg mx-auto">
         {skills.map((skill, index) => (
           <li

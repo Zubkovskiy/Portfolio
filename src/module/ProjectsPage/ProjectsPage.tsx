@@ -16,9 +16,9 @@ export const ProjectsPage = () => {
 
   return (
     <section className="pt-20 mb-30">
-      <h3>My Projects</h3>
+      <h3 className="text-4xl font-bold">My Projects</h3>
       
-      <p className="text-3xl sm:text-4xl mt-4 w-60 sm:w-78">
+      <p className="text-2xl sm:text-3xl mt-8 w-60 sm:w-78">
         Let's Have a Look at{" "}
         <span className="text-[var(--color-primary)]">MY Projects</span>
       </p>
