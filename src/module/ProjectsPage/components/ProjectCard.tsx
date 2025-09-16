@@ -49,11 +49,17 @@ export const ProjectCard: React.FC<ProjectProps> = ({ project, oddNumber }) => {
         <p className="text-lg opacity-70 text-center">{project.description}</p>
 
         <a
-          href={project.link}
+          href={
+            project.link.startsWith("http")
+              ? project.link
+              : `${import.meta.env.BASE_URL}${project.link}`
+          }
+          target="_blank"
+          rel="noopener noreferrer"
           className="hover:scale-110 transition-transform duration-300"
         >
           <img
-            src={`${import.meta.env.BASE_URL}/img/icons/open.svg`}
+            src={`${import.meta.env.BASE_URL}img/icons/open.svg`}
             alt="open"
             className="h-10 text-left"
           />
