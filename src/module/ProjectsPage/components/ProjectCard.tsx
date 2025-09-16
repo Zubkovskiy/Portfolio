@@ -59,7 +59,7 @@ export const ProjectCard: React.FC<ProjectProps> = ({ project, oddNumber }) => {
           className="hover:scale-110 transition-transform duration-300"
         >
           <img
-            src={`${import.meta.env.BASE_URL}img/icons/open.svg`}
+            src={`${import.meta.env.BASE_URL}/img/icons/open.svg`}
             alt="open"
             className="h-10 text-left"
           />

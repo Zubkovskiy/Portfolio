@@ -3,7 +3,7 @@ import { RunningLine } from "../../shared/components/RunningLine";
 
 export const HomeSection = () => {
   return (
-    <section className="relative h-[calc(100vh-3rem)] sm:h-[calc(100vh-3.75rem)] w-full flex flex-col justify-center items-center">
+    <section className="relative h-[calc(100vh-3rem)] sm:h-[calc(100vh-3.75rem)] w-full flex flex-col justify-center items-center pb-12 sm:pb-14">
       <div className="relative">
         <img
           className="w-40 h-40 sm:w-60 sm:h-60 object-cover mx-auto rounded-full"
