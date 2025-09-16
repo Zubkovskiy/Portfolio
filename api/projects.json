@@ -5,7 +5,7 @@
     "title": "Nice Gadgets",
     "description": "Welcome to Nice Gadgets store!",
     "image": "/img/projects/Nice-Gadgets.jpg",
-    "technologies": ["React", "TypeScript", "SCSS"]
+    "technologies": ["React", "TypeScript", "SCSS", "zustand"]
   },
   {
     "id": 2,
