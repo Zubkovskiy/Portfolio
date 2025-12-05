@@ -36,7 +36,7 @@ export const HomeSection = () => {
           Let's Talk
         </Link>
         <a
-          href="/assets/Bohdan_Zubkovskiy.pdf"
+          href="/Portfolio/assets/Bohdan_Zubkovskiy.pdf"
           download="Bohdan_Zubkovskiy.pdf"
           className="flex items-center justify-center mt-4 sm:mt-8 border-2 w-30 sm:w-40 h-10 sm:h-12 border-[var(--color-primary)] rounded-lg text-xl font-semibold hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] transition-colors duration-300 cursor-pointer"
         >
