@@ -12,8 +12,12 @@ export const siteConfig = {
   shortName: 'Zubkivskiy',
   monogram: 'ZB',
 
-  /** Canonical origin. Override per deployment with NEXT_PUBLIC_SITE_URL. */
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://zubkivskiy.dev').replace(/\/$/, ''),
+  /**
+   * Canonical origin. Override per deployment with NEXT_PUBLIC_SITE_URL —
+   * `||` rather than `??` because an empty override is an unset one, and an
+   * empty origin fails the build inside `new URL()` rather than at its source.
+   */
+  url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://zubkivskiy.dev').replace(/\/$/, ''),
 
   contact: {
     email: 'zubkovvsbogdan@gmail.com',

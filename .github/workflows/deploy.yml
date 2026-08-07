@@ -32,9 +32,17 @@ jobs:
         run: npm run check
 
       - name: Build the static export
-        run: npm run build
+        # A repository variable overrides .env.production, but only when it
+        # actually holds something: Next leaves anything already in the
+        # environment alone, so exporting an unset variable as an empty string
+        # would blank the setting rather than fall through to the file.
+        run: |
+          set -euo pipefail
+          for name in NEXT_PUBLIC_SITE_URL NEXT_PUBLIC_BASE_PATH NEXT_PUBLIC_FORMSPREE_ENDPOINT; do
+            if [ -z "${!name-}" ]; then unset "$name"; fi
+          done
+          npm run build
         env:
-          # Repository variables override .env.production when they are set.
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
           NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH }}
           NEXT_PUBLIC_FORMSPREE_ENDPOINT: ${{ vars.NEXT_PUBLIC_FORMSPREE_ENDPOINT }}
