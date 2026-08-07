@@ -32,8 +32,8 @@ export function NeuralBackground() {
     const mouse = { x: -9999, y: -9999, active: false };
 
     const build = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
+      width = canvas.clientWidth || window.innerWidth;
+      height = canvas.clientHeight || window.innerHeight;
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       context.setTransform(dpr, 0, 0, dpr, 0, 0);

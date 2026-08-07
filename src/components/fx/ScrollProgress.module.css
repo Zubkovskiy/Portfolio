@@ -3,7 +3,6 @@
   inset-inline: 0;
   top: 0;
   height: 3px;
-  background: var(--color-border);
   z-index: 200;
   pointer-events: none;
 }

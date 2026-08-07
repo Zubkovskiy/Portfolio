@@ -30,9 +30,6 @@ jobs:
         run: npm run check
 
       - name: Build the static export
-        # An unset repository variable arrives as an empty string, and Next
-        # leaves anything already in the environment alone — so blank it out
-        # here or it beats .env.production instead of falling through to it.
         run: |
           set -euo pipefail
           for name in NEXT_PUBLIC_SITE_URL NEXT_PUBLIC_BASE_PATH NEXT_PUBLIC_FORMSPREE_ENDPOINT; do
@@ -47,15 +44,10 @@ jobs:
       - name: Publish to the gh-pages branch
         run: |
           set -euo pipefail
-
-          # Jekyll would drop _next; .nojekyll turns it off.
           touch out/.nojekyll
 
           git fetch origin gh-pages --depth 1
           git worktree add pages origin/gh-pages
-
-          # Keep projects/: the standalone demos the portfolio links to live on
-          # this branch and are not built from this repository.
           find pages -mindepth 1 -maxdepth 1 ! -name .git ! -name projects -exec rm -rf {} +
           rsync -a out/ pages/
 

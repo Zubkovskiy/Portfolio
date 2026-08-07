@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useId, useState } from 'react';
+import { useCallback, useEffect, useId, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui';
+import { useScrollLock } from '@/hooks/useScrollLock';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import type { Dictionary, Locale } from '@/lib/i18n';
 import { cx } from '@/lib/utils';
@@ -23,53 +24,68 @@ export function NavBar({ locale, nav, a11y }: NavBarProps) {
   const sectionIds = nav.links.map((link) => link.href.slice(1));
   const activeId = useScrollSpy(sectionIds, sectionIds[0] ?? 'top');
 
+  const close = useCallback(() => setOpen(false), []);
+  useScrollLock(open);
+
   useEffect(() => {
     if (!open) return;
+
     const query = window.matchMedia('(min-width: 1101px)');
-    const close = () => setOpen(false);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') close();
+    };
+
     query.addEventListener('change', close);
-    return () => query.removeEventListener('change', close);
-  }, [open]);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      query.removeEventListener('change', close);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [open, close]);
 
   return (
-    <header className={styles.header}>
-      <div className={styles.inner}>
-        <Logo />
+    <>
+      <header className={styles.header}>
+        <div className={styles.inner}>
+          <Logo />
 
-        <nav className={styles.links} aria-label="Primary">
-          {nav.links.map((link) => (
-            <a
-              key={link.key}
-              href={link.href}
-              className={styles.link}
-              aria-current={link.href.slice(1) === activeId ? 'true' : undefined}
+          <nav className={styles.links} aria-label="Primary">
+            {nav.links.map((link) => (
+              <a
+                key={link.key}
+                href={link.href}
+                className={styles.link}
+                aria-current={link.href.slice(1) === activeId ? 'true' : undefined}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className={styles.actions}>
+            <span className={styles.headerSwitch}>
+              <LanguageSwitch current={locale} label={a11y.languageSwitch} />
+            </span>
+
+            <span className={styles.cta}>
+              <Button size="sm" href="#contact" shine>
+                {nav.cta}
+              </Button>
+            </span>
+
+            <button
+              type="button"
+              className={styles.toggle}
+              aria-label={open ? nav.closeMenuLabel : nav.menuLabel}
+              aria-expanded={open}
+              aria-controls={menuId}
+              onClick={() => setOpen((value) => !value)}
             >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className={styles.actions}>
-          <LanguageSwitch current={locale} label={a11y.languageSwitch} />
-
-          <span className={styles.cta}>
-            <Button size="sm" href="#contact" shine>
-              {nav.cta}
-            </Button>
-          </span>
-
-          <button
-            type="button"
-            className={styles.toggle}
-            aria-label={open ? nav.closeMenuLabel : nav.menuLabel}
-            aria-expanded={open}
-            aria-controls={menuId}
-            onClick={() => setOpen((value) => !value)}
-          >
-            {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
-          </button>
+              {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
       <div className={cx(styles.drawer, open && styles.drawerOpen)} inert={!open}>
         <nav id={menuId} className={styles.mobileNav} aria-label="Primary mobile">
@@ -79,13 +95,20 @@ export function NavBar({ locale, nav, a11y }: NavBarProps) {
               href={link.href}
               className={styles.mobileLink}
               aria-current={link.href.slice(1) === activeId ? 'true' : undefined}
-              onClick={() => setOpen(false)}
+              onClick={close}
             >
               {link.label}
             </a>
           ))}
         </nav>
+
+        <div className={styles.drawerFooter}>
+          <LanguageSwitch current={locale} label={a11y.languageSwitch} />
+          <Button href="#contact" shine onClick={close}>
+            {nav.cta}
+          </Button>
+        </div>
       </div>
-    </header>
+    </>
   );
 }

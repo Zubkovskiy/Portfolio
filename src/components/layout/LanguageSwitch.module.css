@@ -41,9 +41,3 @@
 .active:hover {
   color: var(--text-on-accent);
 }
-
-@media (max-width: 520px) {
-  .switch {
-    display: none;
-  }
-}

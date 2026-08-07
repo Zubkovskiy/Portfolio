@@ -113,16 +113,22 @@
 }
 
 .roleSlot {
-  min-height: 40px;
+  position: relative;
+  height: var(--role-slot-height, 40px);
   margin-top: 14px;
 }
 
 .role {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
   font-family: var(--font-display);
   font-weight: var(--weight-semibold);
   font-size: var(--text-xl);
+  line-height: 1.25;
   color: var(--accent);
-  animation: var(--kf-fade-in-up) 0.5s var(--ease-out);
+  animation: var(--kf-role-swap) 0.45s var(--ease-out);
 }
 
 .bio {
@@ -303,11 +309,12 @@
   }
 
   .roleSlot {
-    min-height: 30px;
+    --role-slot-height: 58px;
     margin-top: 10px;
   }
 
   .role {
+    align-items: flex-start;
     font-size: 20px;
   }
 
@@ -323,13 +330,16 @@
     margin-bottom: 30px;
   }
 
-  .ctaRow > * {
+  .hero .ctaRow > * {
     flex: 1 1 0;
     min-width: 0;
     justify-content: center;
     padding-inline: 12px;
     font-size: 13.5px;
     min-height: 48px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.15;
   }
 
   .ctaLong {

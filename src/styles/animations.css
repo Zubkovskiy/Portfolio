@@ -28,6 +28,7 @@
   --kf-shake-x: shake-x;
   --kf-check-draw: check-draw;
   --kf-spin: spin-slow;
+  --kf-role-swap: role-swap;
 }
 
 @keyframes marquee-scroll {
@@ -83,6 +84,17 @@
   50%,
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes role-swap {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

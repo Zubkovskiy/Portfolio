@@ -104,47 +104,66 @@
 }
 
 .drawer {
-  display: grid;
-  grid-template-rows: 0fr;
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: none;
+  flex-direction: column;
+  padding: calc(var(--header-height) + 16px) var(--container-pad) max(28px, env(safe-area-inset-bottom));
+  background: var(--surface-page);
   opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
   transition:
-    grid-template-rows 0.34s var(--ease-out),
-    opacity 0.24s var(--ease-out);
+    opacity 0.28s var(--ease-out),
+    transform 0.28s var(--ease-out);
 }
 
 .drawerOpen {
-  grid-template-rows: 1fr;
   opacity: 1;
+  transform: none;
+  pointer-events: auto;
 }
 
 .mobileNav {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px 20px;
-  min-height: 0;
-  overflow: hidden;
-  padding: 8px var(--container-pad) 20px;
-  border-top: 1px solid transparent;
-  transition: border-color 0.34s var(--ease-out);
-}
-
-.drawerOpen .mobileNav {
-  border-top-color: var(--border-default);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  overflow-y: auto;
 }
 
 .mobileLink {
   display: flex;
   align-items: center;
-  min-height: 44px;
-  padding: 10px 4px;
-  font-size: var(--text-base);
+  min-height: 56px;
+  padding: 8px 0;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 7vw, 34px);
+  font-weight: var(--weight-semibold);
   color: var(--text-heading);
+  border-bottom: 1px solid var(--border-default);
   transition: color 0.3s var(--ease-out);
+}
+
+.mobileLink:last-child {
+  border-bottom: 0;
 }
 
 .mobileLink:hover,
 .mobileLink[aria-current='true'] {
   color: var(--accent);
+}
+
+.drawerFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-default);
 }
 
 @media (max-width: 1100px) {
@@ -155,6 +174,10 @@
   .toggle {
     display: inline-flex;
   }
+
+  .drawer {
+    display: flex;
+  }
 }
 
 @media (max-width: 620px) {
@@ -163,8 +186,15 @@
   }
 }
 
-@media (max-width: 430px) {
-  .mobileNav {
-    grid-template-columns: 1fr;
+@media (max-width: 520px) {
+  .headerSwitch {
+    display: none;
+  }
+}
+
+@media (max-height: 620px) {
+  .mobileLink {
+    min-height: 46px;
+    font-size: clamp(19px, 5.4vw, 26px);
   }
 }

@@ -17,6 +17,7 @@
 
   --container-max: 1240px;
   --container-pad: 24px;
+  --header-height: 68px;
 
   --section-pad-y: clamp(80px, 10vw, 110px);
 }
