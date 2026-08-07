@@ -51,6 +51,7 @@ const TAG_LAYOUT: Array<{
 
 export type HeroProps = {
   hero: Dictionary['hero'];
+  /** URL of the CV PDF for the active locale — English page, English file. */
   cvHref: string;
 };
 
@@ -108,6 +109,9 @@ export function Hero({ hero, cvHref }: HeroProps) {
             </Button>
             <Button
               href={cvHref}
+              /* Bare `download` keeps the filename the file already has. */
+              download
+              type="application/pdf"
               variant="outline"
               shine
               icon={

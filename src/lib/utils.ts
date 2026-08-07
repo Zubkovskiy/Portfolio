@@ -1,3 +1,21 @@
+/**
+ * Base path the site is served from — '' when it owns the domain root,
+ * '/Portfolio' on GitHub Pages. Set at build time via NEXT_PUBLIC_BASE_PATH
+ * and mirrored into `basePath` in next.config.ts.
+ */
+export const BASE_PATH = (process.env.NEXT_PUBLIC_BASE_PATH ?? '').replace(/\/$/, '');
+
+/**
+ * Prefixes a root-relative URL with the deployment's base path.
+ *
+ * `next/link` and `next/image` do this themselves; plain <a href> and any
+ * hand-written asset URL do not, so those call sites go through here.
+ */
+export function withBasePath(path: string): string {
+  if (!BASE_PATH || !path.startsWith('/')) return path;
+  return `${BASE_PATH}${path}`;
+}
+
 /** Joins class names, dropping anything falsy. */
 export function cx(...values: Array<string | false | null | undefined>): string {
   return values.filter(Boolean).join(' ');

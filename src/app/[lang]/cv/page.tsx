@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Button } from '@/components/ui';
 import { LOCALES, getDictionary, isLocale, localePath } from '@/lib/i18n';
-import { mailtoHref, siteConfig, telHref } from '@/lib/site';
-import { cx } from '@/lib/utils';
+import { cvDownloadHref, mailtoHref, siteConfig, telHref } from '@/lib/site';
+import { cx, withBasePath } from '@/lib/utils';
 import { PrintButton } from './PrintButton';
 import styles from './cv.module.css';
 
@@ -180,8 +180,11 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
       </div>
 
       <div className={cx(styles.actions, 'no-print')}>
-        <Button href={localePath(lang)} variant="secondary">
+        <Button href={withBasePath(localePath(lang))} variant="secondary">
           {cv.backToSite}
+        </Button>
+        <Button href={cvDownloadHref(lang)} download type="application/pdf" variant="outline">
+          {dict.hero.ctaDownload}
         </Button>
         <PrintButton label={cv.savePdf} />
       </div>

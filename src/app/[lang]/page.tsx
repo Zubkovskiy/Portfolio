@@ -11,7 +11,8 @@ import { Projects } from '@/components/sections/Projects';
 import { Services } from '@/components/sections/Services';
 import { Skills } from '@/components/sections/Skills';
 import { Marquee } from '@/components/ui';
-import { getDictionary, isLocale, localePath } from '@/lib/i18n';
+import { getDictionary, isLocale } from '@/lib/i18n';
+import { cvDownloadHref } from '@/lib/site';
 import { PersonJsonLd } from './PersonJsonLd';
 import styles from './page.module.css';
 
@@ -34,7 +35,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ lang
         <NavBar locale={lang} nav={dict.nav} a11y={dict.a11y} />
 
         <main id="main">
-          <Hero hero={dict.hero} cvHref={localePath(lang, '/cv')} />
+          <Hero hero={dict.hero} cvHref={cvDownloadHref(lang)} />
 
           <Marquee items={dict.marquee} />
 

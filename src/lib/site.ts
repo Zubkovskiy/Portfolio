@@ -4,6 +4,9 @@
  * `src/lib/i18n/dictionaries`.
  */
 
+import type { Locale } from '@/lib/i18n/config';
+import { withBasePath } from '@/lib/utils';
+
 export const siteConfig = {
   name: 'Bohdan Zubkivskiy',
   shortName: 'Zubkivskiy',
@@ -35,6 +38,20 @@ export const siteConfig = {
   /** Year the copyright line starts from. */
   foundedYear: 2026,
 } as const;
+
+/**
+ * The downloadable CV, one PDF per locale. The files live in `public/cv`, so
+ * the URL doubles as the `download` filename the browser suggests.
+ */
+export const cvFile = {
+  en: '/cv/Bohdan-Zubkivskiy-CV-EN.pdf',
+  ua: '/cv/Bohdan-Zubkivskiy-CV-UA.pdf',
+} as const satisfies Record<Locale, string>;
+
+/** Absolute, base-path-aware URL of the CV PDF for `locale`. */
+export function cvDownloadHref(locale: Locale): string {
+  return withBasePath(cvFile[locale]);
+}
 
 export const mailtoHref = `mailto:${siteConfig.contact.email}`;
 
