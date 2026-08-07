@@ -8,7 +8,6 @@
   justify-content: center;
   gap: 18px;
   background: var(--color-bg);
-  /* Mounts only when unlocked, so a plain entrance animation is enough. */
   animation: var(--kf-boot-fade) 0.4s var(--ease-out);
 }
 

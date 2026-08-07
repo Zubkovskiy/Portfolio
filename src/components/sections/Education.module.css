@@ -36,7 +36,6 @@
   overflow: hidden;
 }
 
-/* Lime pulse travelling down the connector, chasing its dot. */
 .line::after {
   content: '';
   position: absolute;

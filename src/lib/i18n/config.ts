@@ -1,10 +1,3 @@
-/**
- * Locale configuration.
- *
- * `Locale` is the URL segment (/en, /ua). `htmlLang` is the BCP-47 tag that
- * goes on <html lang> and into hreflang — Ukrainian is `uk`, not `ua`.
- */
-
 export const LOCALES = ['en', 'ua'] as const;
 
 export type Locale = (typeof LOCALES)[number];
@@ -20,7 +13,6 @@ export function isLocale(value: string): value is Locale {
   return (LOCALES as readonly string[]).includes(value);
 }
 
-/** Builds a locale-prefixed path: localePath('ua', '/cv') -> '/ua/cv'. */
 export function localePath(locale: Locale, path = ''): string {
   const suffix = path && path !== '/' ? (path.startsWith('/') ? path : `/${path}`) : '';
   return `/${locale}${suffix}`;

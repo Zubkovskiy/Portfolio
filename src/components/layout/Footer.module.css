@@ -69,8 +69,6 @@
   color: var(--accent);
 }
 
-/* --- Animated hairline divider ---------------------------------------- */
-
 .divider {
   position: relative;
   height: 1px;
@@ -117,8 +115,6 @@
   animation: var(--kf-foot-node) 5.2s ease-in-out infinite;
   pointer-events: none;
 }
-
-/* --- Columns ------------------------------------------------------------ */
 
 .grid {
   position: relative;
@@ -205,8 +201,6 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  /* Hug the text so the hover highlight is the width of the link,
-     not the width of the whole column. */
   width: fit-content;
   max-width: 100%;
   padding: 11px 14px;
@@ -236,8 +230,6 @@
   display: flex;
   gap: 10px;
 }
-
-/* --- Bottom bar ---------------------------------------------------------- */
 
 .bottomWrap {
   position: relative;
@@ -305,7 +297,6 @@
   }
 
   .contactLink {
-    /* Still hugs its text — just centred in the stacked layout. */
     margin-inline: auto;
   }
 

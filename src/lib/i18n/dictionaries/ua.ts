@@ -49,7 +49,6 @@ export const ua: Dictionary = {
       { value: '2', label: 'мови' },
     ],
     codeCaption: 'portfolio.tsx',
-    /** Порядок відповідає TAG_LAYOUT у Hero.tsx: 4 зверху, 2 з боків, 4 знизу. */
     floatingTags: [
       'React',
       'Next.js',

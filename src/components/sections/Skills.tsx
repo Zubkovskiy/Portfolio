@@ -12,7 +12,6 @@ export type SkillsProps = {
   languages: Dictionary['languages'];
 };
 
-/** Skill groups as chip clouds, plus a language proficiency panel. */
 export function Skills({ skills, languages }: SkillsProps) {
   return (
     <Section id="skills" labelledBy="skills-title">

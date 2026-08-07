@@ -1,4 +1,3 @@
-/** 4px base scale + layout container. */
 :root {
   --space-0: 0px;
   --space-1: 4px;
@@ -19,7 +18,6 @@
   --container-max: 1240px;
   --container-pad: 24px;
 
-  /* Vertical rhythm between major page sections. */
   --section-pad-y: clamp(80px, 10vw, 110px);
 }
 

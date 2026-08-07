@@ -4,18 +4,14 @@ import styles from './Card.module.css';
 
 export type CardProps = {
   children: ReactNode;
-  /** Lift + brighten the border on hover. */
   hoverable?: boolean;
-  /** Lime accent bar on the left edge. */
   accent?: boolean;
-  /** Stretch to the height of its grid row. */
   fill?: boolean;
   padding?: number;
   className?: string;
   style?: CSSProperties;
 };
 
-/** Base dark surface card — the building block behind every other card. */
 export function Card({
   children,
   hoverable = false,

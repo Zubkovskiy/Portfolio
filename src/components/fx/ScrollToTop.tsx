@@ -8,7 +8,6 @@ import styles from './ScrollToTop.module.css';
 const RADIUS = 23;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
-/** Back-to-top button whose ring doubles as a scroll-progress indicator. */
 export function ScrollToTop({ label }: { label: string }) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const ringRef = useRef<SVGCircleElement>(null);
@@ -22,7 +21,6 @@ export function ScrollToTop({ label }: { label: string }) {
       if (button && (button.dataset.visible === 'true') !== shouldShow) {
         button.dataset.visible = String(shouldShow);
       }
-      // Skip the DOM write entirely while the button is off screen.
       if (ring && shouldShow) {
         ring.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - progress));
       }

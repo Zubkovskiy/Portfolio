@@ -4,29 +4,15 @@ import { cx, withBasePath } from '@/lib/utils';
 import styles from './ImageSlot.module.css';
 
 export type ImageSlotProps = {
-  /** Path under /public. Leave undefined to render the labelled placeholder. */
   src?: string;
   alt?: string;
-  /** Text shown while the slot is empty. */
   caption: string;
-  /** `sizes` hint for the responsive image — matters for the LCP budget. */
   sizes?: string;
   priority?: boolean;
-  /**
-   * `cover` crops to fill (screenshots), `contain` fits the whole image
-   * (documents like certificate scans, where cropping loses the content).
-   */
   fit?: 'cover' | 'contain';
   className?: string;
 };
 
-/**
- * Replaces the design export's <image-slot> custom element.
- *
- * Real images go through next/image (AVIF/WebP, correct intrinsic sizing, lazy
- * by default). Until Bohdan drops a file in, the slot renders an honest,
- * labelled placeholder rather than a stock photo standing in for real work.
- */
 export function ImageSlot({
   src,
   alt,
@@ -40,8 +26,6 @@ export function ImageSlot({
     <div className={cx(styles.slot, className)}>
       {src ? (
         <Image
-          /* Unoptimized images are served from `src` verbatim, and next/image
-             does not add the deployment's base path to it. */
           src={withBasePath(src)}
           alt={alt ?? caption}
           fill

@@ -2,13 +2,6 @@
 
 import { useEffect, useState } from 'react';
 
-/**
- * Reports which section id is currently in the reading band of the viewport.
- *
- * Purely IntersectionObserver-driven — no scroll handler, no getBoundingClientRect
- * per frame. When several sections overlap the band, the one closest to the top
- * wins, which keeps the nav highlight stable while scrolling upward.
- */
 export function useScrollSpy(sectionIds: readonly string[], initialId: string): string {
   const [activeId, setActiveId] = useState(initialId);
 

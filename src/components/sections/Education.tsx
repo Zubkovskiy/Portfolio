@@ -5,12 +5,6 @@ import type { Dictionary } from '@/lib/i18n';
 import { cx } from '@/lib/utils';
 import styles from './Education.module.css';
 
-/**
- * Vertical education timeline.
- *
- * The dictionary lists entries newest-first (CV order); the timeline reads
- * bottom-up as a growth story, so it renders oldest-first.
- */
 export function Education({ education }: { education: Dictionary['education'] }) {
   const items = [...education.items].reverse();
 
@@ -36,7 +30,6 @@ export function Education({ education }: { education: Dictionary['education'] })
               className={cx(styles.row, isLast && styles.last)}
               style={
                 {
-                  // Staggered so the pulse walks down the rail one step at a time.
                   '--rail-delay': `${index}s`,
                   '--line-delay': `${index + 0.42}s`,
                 } as CSSProperties

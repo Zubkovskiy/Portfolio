@@ -1,9 +1,5 @@
 import { z } from 'zod';
 
-/**
- * Field limits live here so the form, the schema and the copy that explains
- * them can never drift apart.
- */
 export const CONTACT_LIMITS = {
   nameMin: 2,
   nameMax: 120,
@@ -14,15 +10,9 @@ export const CONTACT_LIMITS = {
   messageMax: 5000,
 } as const;
 
-/** Fields the UI can attach an inline error to. */
 export const CONTACT_FIELDS = ['name', 'email', 'phone', 'message'] as const;
 export type ContactField = (typeof CONTACT_FIELDS)[number];
 
-/**
- * The submission is validated in the browser before it is handed to Formspree,
- * so a problem is reported inline on the offending field instead of coming
- * back as a generic provider error.
- */
 export const contactSchema = z
   .object({
     name: z.string().trim().min(CONTACT_LIMITS.nameMin).max(CONTACT_LIMITS.nameMax),
@@ -30,13 +20,6 @@ export const contactSchema = z
     phone: z.string().trim().max(CONTACT_LIMITS.phoneMax).or(z.literal('')).optional(),
     interest: z.string().trim().max(CONTACT_LIMITS.interestMax).optional(),
     message: z.string().trim().min(CONTACT_LIMITS.messageMin).max(CONTACT_LIMITS.messageMax),
-    /**
-     * Honeypot. Real people never see this field, so anything in it is a bot.
-     *
-     * Deliberately permissive: flagging it as invalid would tell the bot the
-     * submission failed, which is exactly the feedback a honeypot is meant to
-     * withhold. The form shows the success state instead and sends nothing.
-     */
     company: z.string().max(500).optional(),
   })
   .refine((data) => Boolean(data.email) || Boolean(data.phone), {
@@ -46,13 +29,8 @@ export const contactSchema = z
 
 export type ContactPayload = z.infer<typeof contactSchema>;
 
-/**
- * Which fields failed, without any wording — the message shown to the visitor
- * comes from the locale dictionary, so validation stays language-agnostic.
- */
 export type ContactFieldErrors = Partial<Record<ContactField, true>>;
 
-/** Reduces zod issues to the set of field names that failed. */
 export function collectFieldErrors(error: z.ZodError): ContactFieldErrors {
   const fields: ContactFieldErrors = {};
 

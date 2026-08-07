@@ -4,21 +4,10 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { easeOutCubic } from '@/lib/utils';
 import { useReducedMotion } from './useMediaQuery';
 
-/** If the element never reports as visible, land on the final value anyway. */
 const FAILSAFE_MS = 5000;
 
-// useLayoutEffect has no meaning on the server and warns if called there.
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
-/**
- * Ramps 0 → 1 the first time `ref` scrolls into view.
- *
- * Progress starts at 1, not 0. That way the server-rendered HTML — and any
- * visitor whose IntersectionObserver never fires, or who asked for reduced
- * motion — shows the real number instead of a zero that never counts up. The
- * reset to 0 happens in a layout effect, before the browser paints, so the
- * animation still starts from zero with no visible flash.
- */
 export function useCountUp<T extends HTMLElement>(durationMs = 1200) {
   const ref = useRef<T>(null);
   const [progress, setProgress] = useState(1);

@@ -22,10 +22,6 @@
   overflow: hidden;
 }
 
-/*
- * Matches the 4:3 of a Udemy certificate, so the scan fills the card edge to
- * edge and its text stays readable instead of shrinking into letterboxed bars.
- */
 .media {
   position: relative;
   aspect-ratio: 4 / 3;
@@ -34,13 +30,10 @@
   overflow: hidden;
 }
 
-/* A document scan sits on white paper — any leftover margin reads as the
-   sheet itself rather than as a gap in the card. */
 .mediaDocument {
   background: #fff;
 }
 
-/* Slow lime scanner passing over the certificate scan. */
 .scanner {
   position: absolute;
   inset: 0;
@@ -151,7 +144,6 @@
   margin: 20px 0 18px;
 }
 
-/* Pushes the progress block to the bottom so both cards line up. */
 .parts,
 .progressHead {
   margin-top: auto;
@@ -183,7 +175,6 @@
 .progressHead {
   display: flex;
   align-items: center;
-  /* With no caption the percentage falls to the right on its own. */
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 12px;
@@ -192,7 +183,6 @@
 .progressHead > :only-child {
   margin-left: auto;
 }
-
 
 .percent {
   font-family: var(--font-display);
@@ -217,7 +207,6 @@
   transform-origin: left;
 }
 
-/* The scanner beam would look wrong sweeping over white paper. */
 .mediaDocument .scanner {
   display: none;
 }

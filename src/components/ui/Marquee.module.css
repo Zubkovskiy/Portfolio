@@ -1,6 +1,5 @@
 .marquee {
   overflow: hidden;
-  /* Full-bleed: breaks out of the centred content container. */
   width: 100%;
   contain: content;
 }
@@ -21,7 +20,6 @@
   will-change: transform;
 }
 
-/* Pausing on hover lets people actually read the band. */
 @media (hover: hover) {
   .marquee:hover .track {
     animation-play-state: paused;
@@ -50,12 +48,6 @@
   color: var(--text-heading);
 }
 
-/*
- * Separator between items. Drawn as a rotating square rather than set as a
- * character: iOS resolves several of the asterisk-like glyphs to a colour
- * emoji from its own font, which lands in the band as a coloured blob no CSS
- * can restyle. A shape has no font to substitute.
- */
 .glyph {
   flex: none;
   width: 9px;

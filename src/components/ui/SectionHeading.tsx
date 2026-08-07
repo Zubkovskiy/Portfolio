@@ -5,15 +5,12 @@ export type SectionHeadingProps = {
   eyebrow?: string;
   title: string;
   highlight?: string;
-  /** Oversized faint word behind the title. Decorative only. */
   ghostText?: string;
   align?: 'left' | 'center';
-  /** Ties the heading to its <section aria-labelledby>. */
   id?: string;
   className?: string;
 };
 
-/** Section header: bracketed eyebrow, ghost word, title with lime highlight. */
 export function SectionHeading({
   eyebrow,
   title,

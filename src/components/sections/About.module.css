@@ -30,8 +30,6 @@
   line-height: var(--leading-relaxed);
 }
 
-/* --- profile.json card ---------------------------------------------------- */
-
 .visual {
   position: relative;
   display: flex;

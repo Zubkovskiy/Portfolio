@@ -2,7 +2,6 @@ import type { CSSProperties } from 'react';
 import { cx } from '@/lib/utils';
 import styles from './CertificateDraft.module.css';
 
-/** Registration ticks at the plate corners, as on a real print blank. */
 const CORNER_MARKS = [
   'M 18 32 L 18 18 L 32 18',
   'M 368 18 L 382 18 L 382 32',
@@ -10,24 +9,12 @@ const CORNER_MARKS = [
   'M 382 268 L 382 282 L 368 282',
 ] as const;
 
-/**
- * Guilloche — the interlaced security waves engraved on certificates and
- * banknotes. Two waves in antiphase cross to form the lattice; the third is a
- * shorter accent below them.
- */
 const GUILLOCHE = [
   { d: 'M 92 190 Q 107 180 122 190 T 152 190 T 182 190 T 212 190 T 242 190 T 272 190 T 302 190', delay: 0 },
   { d: 'M 92 190 Q 107 200 122 190 T 152 190 T 182 190 T 212 190 T 242 190 T 272 190 T 302 190', delay: 1.5 },
   { d: 'M 116 208 Q 128 202 140 208 T 164 208 T 188 208 T 212 208 T 236 208 T 260 208 T 284 208', delay: 3 },
 ] as const;
 
-/**
- * Placeholder for a certificate that does not exist yet.
- *
- * Fills the whole media box and is pure SVG + CSS — no image request, no
- * JavaScript, and every animation stops under `prefers-reduced-motion` along
- * with the rest of the site.
- */
 export function CertificateDraft({ caption }: { caption: string }) {
   return (
     <div className={styles.draft} role="img" aria-label={caption}>
@@ -36,7 +23,6 @@ export function CertificateDraft({ caption }: { caption: string }) {
           <path key={d} d={d} fill="none" stroke="var(--accent)" strokeWidth="1.6" opacity="0.45" />
         ))}
 
-        {/* Engraving border */}
         <rect
           className={styles.frame}
           x="46"
@@ -60,7 +46,6 @@ export function CertificateDraft({ caption }: { caption: string }) {
           strokeWidth="1"
         />
 
-        {/* Seal — outer ring turns, inner arc fills to the completed share */}
         <g>
           <circle
             className={styles.sealRing}
@@ -89,7 +74,6 @@ export function CertificateDraft({ caption }: { caption: string }) {
           <circle cx="200" cy="106" r="15" fill="none" stroke="rgb(162 255 1 / 35%)" strokeWidth="1.2" />
         </g>
 
-        {/* Award ribbons under the seal */}
         <path
           d="M 190 138 L 182 176 L 197 167"
           fill="none"

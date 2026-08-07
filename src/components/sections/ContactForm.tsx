@@ -25,17 +25,6 @@ type Fields = {
   interest: string;
 };
 
-/**
- * Formspree endpoint the submission is posted to.
- *
- * The site is a static export with no backend of its own, so the form talks to
- * Formspree from the browser. Formspree shows people a full URL
- * (`https://formspree.io/f/abcd1234`), so that is what tends to get pasted into
- * the variable — accepting either the bare id or the whole URL avoids a doubled
- * path that fails with a confusing 404 at the first real submission.
- *
- * Left empty, the form falls back to a prefilled mailto: link.
- */
 const FORMSPREE_ENDPOINT = (() => {
   const raw = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT?.trim();
   if (!raw) return '';
@@ -44,7 +33,6 @@ const FORMSPREE_ENDPOINT = (() => {
   return id ? `https://formspree.io/f/${id}` : '';
 })();
 
-/** Builds the mailto: fallback used when no delivery provider is configured. */
 function buildMailto(fields: Fields): string {
   const body = [
     `Name: ${fields.name}`,
@@ -61,13 +49,6 @@ function buildMailto(fields: Fields): string {
   return `mailto:${siteConfig.contact.email}?subject=${subject}&body=${encodeURIComponent(body)}`;
 }
 
-/**
- * Success tick that draws itself in.
- *
- * Hand-rolled rather than borrowed from the icon set: lucide renders the ring
- * as a <path> too, so a blanket stroke-dash animation would turn the circle
- * into a dashed arc. Here only the check has a dash, and its length is known.
- */
 function SuccessMark() {
   return (
     <span className={styles.successMark} aria-hidden="true">
@@ -79,7 +60,6 @@ function SuccessMark() {
   );
 }
 
-/** Small rotating ring shown on the submit button while the request is out. */
 function Spinner() {
   return (
     <span className={styles.spinner} aria-hidden="true">
@@ -97,18 +77,6 @@ function Spinner() {
   );
 }
 
-/**
- * Contact form.
- *
- * Validates in the browser against the zod schema before anything leaves the
- * page, so a problem is reported inline on the offending field instantly — the
- * previous version posted first and answered every rejection with one generic
- * "something went wrong", which told the visitor nothing about what to fix.
- *
- * Delivery goes straight to Formspree; the site is a static export and has no
- * backend of its own. Falls back to a prefilled mailto: link when no provider
- * is configured or the request never lands, so the form is never a dead end.
- */
 export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
   const copy = contact.form;
   const formRef = useRef<HTMLFormElement>(null);
@@ -119,11 +87,6 @@ export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
   const [missingContact, setMissingContact] = useState(false);
   const [mailtoUrl, setMailtoUrl] = useState('');
 
-  /**
-   * Clears a field's error — and any lingering status banner — as soon as the
-   * visitor starts fixing things. A stale "sent" or "failed" notice sitting
-   * above a half-typed message is just noise.
-   */
   const clearError = useCallback((field: ContactField) => {
     setStatus((current) => (current === 'submitting' ? current : 'idle'));
     setFieldErrors((current) => {
@@ -137,11 +100,6 @@ export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
   const errorFor = (field: ContactField): string | undefined =>
     fieldErrors[field] ? copy.fieldErrors[field] : undefined;
 
-  /*
-   * The confirmation fades away on its own so the section returns to a clean
-   * form. Banners that carry the mailto: link are left alone — auto-hiding
-   * them would take away the visitor's only remaining way to reach out.
-   */
   useEffect(() => {
     if (status !== 'sent' && status !== 'rate-limited') return;
     const timer = window.setTimeout(() => setStatus('idle'), status === 'sent' ? 6000 : 10000);
@@ -162,20 +120,17 @@ export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
       interest,
     };
 
-    // Same schema the server runs — no round trip needed to find a typo.
     const parsed = contactSchema.safeParse(fields);
     const needsContact = !fields.email && !fields.phone;
 
     if (!parsed.success || needsContact) {
       const errors = parsed.success ? {} : collectFieldErrors(parsed.error);
-      // The "email or phone" rule is reported on its own, not as a bad email.
       if (needsContact) delete errors.email;
 
       setFieldErrors(errors);
       setMissingContact(needsContact);
       setStatus('idle');
 
-      // Put the caret on the first thing that needs attention.
       const firstInvalid = (['name', 'email', 'phone', 'message'] as const).find((field) =>
         needsContact ? field === 'email' : errors[field],
       );
@@ -186,7 +141,6 @@ export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
     setFieldErrors({});
     setMissingContact(false);
 
-    // Honeypot filled — show success and send nothing, so the bot learns nothing.
     if (fields.company) {
       setStatus('sent');
       form.reset();
@@ -194,7 +148,6 @@ export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
       return;
     }
 
-    // No provider configured: offer the mail client instead of a dead end.
     if (!FORMSPREE_ENDPOINT) {
       setMailtoUrl(buildMailto(fields));
       setStatus('unconfigured');
@@ -209,7 +162,6 @@ export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           name: fields.name,
-          // Formspree uses `email` as the reply-to address on the notification.
           email: fields.email,
           phone: fields.phone,
           interest: fields.interest,
@@ -225,7 +177,6 @@ export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
         return;
       }
 
-      // Formspree throttles a form that is being hammered.
       if (response.status === 429) {
         setStatus('rate-limited');
         return;
@@ -234,7 +185,6 @@ export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
       setMailtoUrl(buildMailto(fields));
       setStatus('error');
     } catch {
-      // Offline or the request never landed — offer the mail client instead.
       setMailtoUrl(buildMailto(fields));
       setStatus('error');
     }
@@ -312,7 +262,6 @@ export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
         onChange={() => clearError('message')}
       />
 
-      {/* Honeypot — hidden from people, irresistible to bots. */}
       <div className={styles.honeypot} aria-hidden="true">
         <label htmlFor="company">Company</label>
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />

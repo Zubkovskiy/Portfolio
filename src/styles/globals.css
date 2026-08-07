@@ -4,10 +4,6 @@
 @import './tokens/effects.css';
 @import './animations.css';
 
-/* ------------------------------------------------------------------ *
- * Reset
- * ------------------------------------------------------------------ */
-
 *,
 *::before,
 *::after {
@@ -20,7 +16,6 @@ html {
   color-scheme: dark;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  /* Offset for the sticky nav when jumping to an #anchor. */
   scroll-padding-top: 88px;
   background: var(--color-bg);
 }
@@ -95,19 +90,11 @@ ol {
   color: var(--color-ink);
 }
 
-/* ------------------------------------------------------------------ *
- * Focus — visible for keyboard users, invisible for mouse users.
- * ------------------------------------------------------------------ */
-
 :focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
   border-radius: 4px;
 }
-
-/* ------------------------------------------------------------------ *
- * Scrollbar
- * ------------------------------------------------------------------ */
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -127,10 +114,6 @@ ol {
   background: var(--color-lime);
 }
 
-/* ------------------------------------------------------------------ *
- * Shared utilities
- * ------------------------------------------------------------------ */
-
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -138,13 +121,6 @@ ol {
   padding-inline: var(--container-pad);
 }
 
-/*
- * Scroll-triggered entrance. `is-visible` is added by useReveal().
- *
- * The hidden state is scoped to `html[data-js]`, which the inline head script
- * sets. Without JavaScript — or if hydration ever fails — the content is
- * simply visible instead of a blank page.
- */
 html[data-js] .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -171,7 +147,6 @@ html[data-js] .reveal.is-visible {
   transition-delay: 0.32s;
 }
 
-/* Screen-reader-only, still focusable. */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -184,7 +159,6 @@ html[data-js] .reveal.is-visible {
   border: 0;
 }
 
-/* Skip link — first tab stop on the page. */
 .skip-link {
   position: fixed;
   top: 8px;
@@ -204,10 +178,6 @@ html[data-js] .reveal.is-visible {
   color: var(--text-on-accent);
 }
 
-/* ------------------------------------------------------------------ *
- * Custom cursor — enabled by <CustomCursor /> on fine pointers only.
- * ------------------------------------------------------------------ */
-
 html[data-custom-cursor] {
   cursor: none;
 }
@@ -224,14 +194,9 @@ html[data-custom-cursor] select {
   cursor: auto;
 }
 
-/* Locks scrolling while the boot overlay or easter egg is on screen. */
 html[data-scroll-locked] {
   overflow: hidden;
 }
-
-/* ------------------------------------------------------------------ *
- * Reduced motion — one global opt-out, no per-component branching.
- * ------------------------------------------------------------------ */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -252,10 +217,6 @@ html[data-scroll-locked] {
     transform: none;
   }
 }
-
-/* ------------------------------------------------------------------ *
- * Print — the CV route carries its own sheet styles.
- * ------------------------------------------------------------------ */
 
 @media print {
   .no-print {

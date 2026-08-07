@@ -22,8 +22,6 @@
     transform var(--dur-base) var(--ease-spring);
 }
 
-/* --- Sizes ------------------------------------------------------------ */
-
 .sm {
   --btn-pad-y: 8px;
   --btn-pad-x: 18px;
@@ -44,8 +42,6 @@
   --btn-font: var(--text-md);
   --btn-gap: 10px;
 }
-
-/* --- Variants --------------------------------------------------------- */
 
 .primary {
   background: var(--accent);
@@ -71,17 +67,6 @@
   border-color: transparent;
 }
 
-/* --- States ----------------------------------------------------------- */
-
-/*
- * Every hover rule restates `color` on purpose.
- *
- * A Button with `href` renders as an <a>, and globals.css has
- * `a:hover { color: var(--accent-hover) }`. That selector — (0,1,1) — outranks
- * the plain `.primary` class — (0,1,0) — so on hover the label turned lime on
- * a lime background and vanished. Setting colour inside `.variant:hover`
- * (0,2,0) puts it back in front.
- */
 @media (hover: hover) {
   .primary:hover {
     background: var(--accent-hover);
@@ -123,11 +108,6 @@
   transform: none;
 }
 
-/*
- * Shine sweep + cursor-tracking glow. Both are decorative pseudo-elements,
- * so they cost nothing until the pointer is actually over the button.
- * `--mx`/`--my` are written by <ShineWrapper> on pointermove.
- */
 .shine::before {
   content: '';
   position: absolute;

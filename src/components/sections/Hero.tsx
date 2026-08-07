@@ -12,18 +12,6 @@ import { parseCountUpValue } from '@/lib/utils';
 import { HeroCodeWindow } from './HeroCodeWindow';
 import styles from './Hero.module.css';
 
-/**
- * Position + motion for each floating tech tag, forming a ring around the
- * code window: four across the top, one down each side, four along the
- * bottom. Weighted top and bottom, where there is actually room.
- *
- * Positions use `left`/`right` percentages rather than a centring
- * `translateX(-50%)` — the parallax effect writes to `style.transform` on
- * these same elements, so any transform set here would be wiped on the first
- * pointer move and the tag would jump.
- *
- * Order matches `hero.floatingTags` in the dictionaries.
- */
 const TAG_LAYOUT: Array<{
   style: CSSProperties;
   depth: number;
@@ -32,17 +20,14 @@ const TAG_LAYOUT: Array<{
   duration: number;
   delay: number;
 }> = [
-  // Top band
   { style: { top: -22, left: '-2%' }, depth: 18, tone: 'soft', rotate: -4, duration: 6.5, delay: 0 },
   { style: { top: -62, left: '25%' }, depth: 26, tone: 'neutral', rotate: 3, duration: 7.6, delay: 1.1 },
   { style: { top: -58, right: '24%' }, depth: 24, tone: 'neutral', rotate: -2, duration: 7.1, delay: 2.2 },
   { style: { top: -18, right: '-3%' }, depth: 30, tone: 'neutral', rotate: 5, duration: 6.8, delay: 3.1 },
 
-  // Sides — vertically centred on the window
   { style: { top: 138, left: '-5%' }, depth: 14, tone: 'accent', rotate: -6, duration: 8.2, delay: 0.8 },
   { style: { top: 196, right: '-5%' }, depth: 16, tone: 'accent', rotate: 6, duration: 7.9, delay: 2.7 },
 
-  // Bottom band
   { style: { top: 366, left: '-1%' }, depth: 22, tone: 'neutral', rotate: -3, duration: 7.2, delay: 0.5 },
   { style: { top: 424, left: '26%' }, depth: 28, tone: 'soft', rotate: 4, duration: 8, delay: 3.4 },
   { style: { top: 420, right: '25%' }, depth: 26, tone: 'neutral', rotate: -4, duration: 6.9, delay: 1.6 },
@@ -51,7 +36,6 @@ const TAG_LAYOUT: Array<{
 
 export type HeroProps = {
   hero: Dictionary['hero'];
-  /** URL of the CV PDF for the active locale — English page, English file. */
   cvHref: string;
 };
 
@@ -94,7 +78,6 @@ export function Hero({ hero, cvHref }: HeroProps) {
             </span>
           </h1>
 
-          {/* aria-live keeps the rotating role announced without re-reading the page. */}
           <div className={styles.roleSlot}>
             <div key={activeRole} className={styles.role} aria-live="polite">
               {activeRole}
@@ -109,7 +92,6 @@ export function Hero({ hero, cvHref }: HeroProps) {
             </Button>
             <Button
               href={cvHref}
-              /* Bare `download` keeps the filename the file already has. */
               download
               type="application/pdf"
               variant="outline"

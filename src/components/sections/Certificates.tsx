@@ -18,7 +18,6 @@ type CardProps = {
 };
 
 function CertificateCard({ item, index, labels }: CardProps) {
-  // Only the unfinished card animates its percentage; a finished one is just 100.
   const inProgress = item.status === 'in-progress';
   const { ref, progress } = useCountUp<HTMLElement>();
   const factor = inProgress ? progress : 1;
@@ -81,7 +80,6 @@ function CertificateCard({ item, index, labels }: CardProps) {
 
           <div className={styles.rule} aria-hidden="true" />
 
-          {/* A multi-track course shows one bar per track instead of a single total. */}
           {item.parts ? (
             <div className={styles.parts}>
               {item.parts.map((part) => {
@@ -109,8 +107,6 @@ function CertificateCard({ item, index, labels }: CardProps) {
           ) : (
             <>
               <div className={styles.progressHead}>
-                {/* Nothing to caption on a single-bar card — the title, issuer
-                    and badge above already say everything the bar could. */}
                 <span className={styles.percent}>{livePercent}%</span>
               </div>
               <div
@@ -131,13 +127,6 @@ function CertificateCard({ item, index, labels }: CardProps) {
   );
 }
 
-/**
- * Certificate grid, driven entirely by the dictionary.
- *
- * A card with no `image` renders the labelled empty slot rather than a stand-in,
- * and an unfinished course shows its real per-track progress instead of a
- * single made-up number.
- */
 export function Certificates({ certificates }: { certificates: Dictionary['certificates'] }) {
   const labels = {
     completedLabel: certificates.completedLabel,

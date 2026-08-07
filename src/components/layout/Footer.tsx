@@ -11,7 +11,6 @@ const SOCIAL_ICONS = {
   telegram: Send,
 } as const;
 
-/** Animated hairline rule with a travelling node. Purely decorative. */
 function Divider() {
   return (
     <div className={styles.divider} aria-hidden="true">

@@ -12,13 +12,6 @@ const SKIP_HINT_AFTER_MS = 1000;
 
 export const BOOT_SESSION_KEY = 'zb_booted';
 
-/**
- * Terminal boot sequence shown once per session.
- *
- * Repeat visits and reduced-motion users skip it without a flash: the inline
- * script in <head> (see BootScript) marks <html data-booted> before first
- * paint, and CSS hides the overlay outright.
- */
 export function BootOverlay({ copy }: { copy: Dictionary['boot'] }) {
   const [visibleLines, setVisibleLines] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
@@ -43,13 +36,11 @@ export function BootOverlay({ copy }: { copy: Dictionary['boot'] }) {
       try {
         sessionStorage.setItem(BOOT_SESSION_KEY, '1');
       } catch {
-        // Private-mode storage denial is not worth failing the page over.
       }
     }, FADE_OUT_MS);
   }, []);
 
   useEffect(() => {
-    // Already marked as booted by the head script — nothing to play.
     if (document.documentElement.hasAttribute('data-booted')) {
       finishedRef.current = true;
       setDone(true);
@@ -131,9 +122,4 @@ export function BootOverlay({ copy }: { copy: Dictionary['boot'] }) {
   );
 }
 
-/**
- * Blocking one-liner injected into <head>. It decides — before the first
- * paint — whether this visit should see the boot sequence, and locks scrolling
- * if it should.
- */
 export const BOOT_INLINE_SCRIPT = `(function(){var d=document.documentElement;d.setAttribute('data-js','');try{var booted=sessionStorage.getItem('${BOOT_SESSION_KEY}')==='1';var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(booted||reduced){d.setAttribute('data-booted','')}else{d.setAttribute('data-scroll-locked','')}}catch(e){d.setAttribute('data-booted','')}})();`;

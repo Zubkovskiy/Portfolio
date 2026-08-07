@@ -3,26 +3,13 @@
 import { useEffect, useRef } from 'react';
 import styles from './NeuralBackground.module.css';
 
-/** Distance (px) at which two nodes stop being linked. */
 const LINK_DISTANCE = 130;
-/** Distance (px) at which nodes stop reaching for the cursor. */
 const MOUSE_DISTANCE = 170;
-/** Link opacity is quantised into this many buckets so lines batch into one path each. */
 const ALPHA_BUCKETS = 6;
 const NODE_COLOR = 'rgba(246,247,242,.35)';
 
 type Node = { x: number; y: number; vx: number; vy: number; r: number };
 
-/**
- * Ambient constellation behind the page.
- *
- * Three things keep this off the critical path:
- *  - links are quantised into a handful of alpha buckets and stroked as one
- *    path per bucket, instead of one beginPath/stroke per line;
- *  - the loop stops entirely when the tab is hidden;
- *  - reduced-motion visitors get a single static frame, and coarse-pointer
- *    devices are given a lower node count.
- */
 export function NeuralBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -51,7 +38,6 @@ export function NeuralBackground() {
       canvas.height = Math.round(height * dpr);
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Fewer nodes on touch devices — they are usually the slower GPUs.
       const density = coarsePointer ? 34000 : 23000;
       const count = Math.min(coarsePointer ? 45 : 90, Math.max(24, Math.round((width * height) / density)));
 
@@ -64,7 +50,6 @@ export function NeuralBackground() {
       }));
     };
 
-    /** Reusable per-bucket path list — allocated once, cleared each frame. */
     const buckets: Path2D[] = [];
 
     const paint = () => {
@@ -112,7 +97,6 @@ export function NeuralBackground() {
         context.stroke(buckets[i]!);
       }
 
-      // All dots share one fill colour, so one path covers every node.
       const dots = new Path2D();
       for (const node of nodes) {
         dots.moveTo(node.x + node.r, node.y);

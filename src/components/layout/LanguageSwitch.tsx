@@ -7,14 +7,8 @@ import { LOCALES, LOCALE_META, type Locale } from '@/lib/i18n';
 import { cx } from '@/lib/utils';
 import styles from './LanguageSwitch.module.css';
 
-/**
- * EN/UA toggle. Each option is a real <Link> to the same page in the other
- * locale, so both languages are crawlable URLs rather than a client-only
- * state flip — and Next prefetches the other locale on hover.
- */
 export function LanguageSwitch({ current, label }: { current: Locale; label: string }) {
   const pathname = usePathname();
-  // '/ua/cv' -> '/cv'; '/en' -> ''
   const rest = pathname.replace(/^\/[^/]+/, '');
   const activeIndex = Math.max(0, LOCALES.indexOf(current));
 

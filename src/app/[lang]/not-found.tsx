@@ -3,10 +3,6 @@ import { DEFAULT_LOCALE, getDictionary, localePath } from '@/lib/i18n';
 import { withBasePath } from '@/lib/utils';
 import styles from './not-found.module.css';
 
-/**
- * 404 page. It cannot read the locale segment (Next renders not-found outside
- * the route params), so it falls back to the default dictionary.
- */
 export default function NotFound() {
   const dict = getDictionary(DEFAULT_LOCALE);
 

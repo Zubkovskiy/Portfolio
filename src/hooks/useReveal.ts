@@ -2,11 +2,6 @@
 
 import { useEffect } from 'react';
 
-/**
- * If `ready` never flips (a stalled boot overlay, a thrown effect upstream),
- * reveal everything anyway after this long. Content being visible always beats
- * content being animated.
- */
 const FAILSAFE_MS = 4000;
 
 function revealAll(): void {
@@ -15,16 +10,6 @@ function revealAll(): void {
   });
 }
 
-/**
- * Fades every `.reveal` element in as it enters the viewport.
- *
- * One IntersectionObserver for the whole page, and each element is unobserved
- * the moment it has played — so the observer's work shrinks to zero by the
- * time the visitor reaches the footer.
- *
- * `ready` is false while the boot overlay is up: elements revealed behind a
- * full-screen overlay would have burned their animation unseen.
- */
 export function useReveal(ready = true): void {
   useEffect(() => {
     if (!ready) {
@@ -35,8 +20,6 @@ export function useReveal(ready = true): void {
     const elements = document.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)');
     if (elements.length === 0) return;
 
-    // No IntersectionObserver (or a browser that never delivers callbacks):
-    // show everything rather than gamble on the animation.
     if (!('IntersectionObserver' in window)) {
       revealAll();
       return;

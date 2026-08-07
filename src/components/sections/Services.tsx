@@ -6,7 +6,6 @@ import { AiWorkflowDiagram } from './diagrams/AiWorkflowDiagram';
 import { ComponentTreeDiagram } from './diagrams/ComponentTreeDiagram';
 import styles from './Services.module.css';
 
-/** Two service cards, each fronted by an animated technical illustration. */
 export function Services({ services }: { services: Dictionary['services'] }) {
   const { diagramLabels } = services;
 

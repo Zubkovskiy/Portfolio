@@ -11,7 +11,6 @@ type CommonProps = {
   size?: ButtonSize;
   icon?: ReactNode;
   iconPosition?: 'left' | 'right';
-  /** Adds the sweep-and-glow treatment reserved for primary CTAs. */
   shine?: boolean;
   className?: string;
 };
@@ -28,13 +27,6 @@ type NativeButtonProps = CommonProps & { href?: undefined } & Omit<
 
 export type ButtonProps = AnchorProps | NativeButtonProps;
 
-/**
- * Pill CTA. Renders an <a> when `href` is present, a <button> otherwise.
- *
- * Every visual state lives in CSS — unlike the design-system original, which
- * tracked hover/active in React state and re-rendered the whole subtree on
- * pointer enter.
- */
 export function Button({
   children,
   variant = 'primary',
@@ -55,7 +47,6 @@ export function Button({
     </>
   );
 
-  // <PointerGlow /> looks for this attribute to steer the radial highlight.
   const shineAttr = shine ? { 'data-shine': '' } : {};
 
   if (typeof rest.href === 'string') {

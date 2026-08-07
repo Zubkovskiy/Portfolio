@@ -11,8 +11,6 @@
   align-items: stretch;
 }
 
-/* An odd number of groups would leave a hole in the last row — let the
-   final panel span both columns instead. */
 .grid > .panel:last-child:nth-child(odd) {
   grid-column: 1 / -1;
 }
@@ -40,7 +38,6 @@
   }
 }
 
-/* Short lime rule notched into the top edge. */
 .notch {
   position: absolute;
   top: 0;
@@ -117,8 +114,6 @@
     transform: rotate(135deg) scale(1.4);
   }
 }
-
-/* --- Languages panel ------------------------------------------------------ */
 
 .languages {
   display: grid;

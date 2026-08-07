@@ -2,12 +2,6 @@
 
 import { useEffect } from 'react';
 
-/**
- * Locks page scrolling while an overlay is open.
- *
- * Uses a counter on the module scope so two overlays (boot screen + easter
- * egg) can overlap without the first one to close releasing the lock for both.
- */
 let lockCount = 0;
 
 export function useScrollLock(locked: boolean): void {

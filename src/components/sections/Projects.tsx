@@ -4,11 +4,6 @@ import { ProjectCard, SectionHeading } from '@/components/ui';
 import type { Dictionary } from '@/lib/i18n';
 import styles from './Projects.module.css';
 
-/**
- * Case-study grid, driven by the dictionary. Every entry links to a live,
- * publicly reachable build — a card with no `href` degrades to a plain
- * preview rather than a dead link.
- */
 export function Projects({ projects }: { projects: Dictionary['projects'] }) {
   return (
     <Section id="projects" labelledBy="projects-title">

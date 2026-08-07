@@ -12,13 +12,6 @@ export type InterestSelectProps = {
   onChange: (value: string) => void;
 };
 
-/**
- * Listbox for the "I'm interested in" field.
- *
- * A native <select> cannot be styled to match the design system, so this is a
- * custom control wired up properly: `role="listbox"`, `aria-selected`, Escape
- * to close, arrow keys to move, and focus returned to the trigger on close.
- */
 export function InterestSelect({ label, placeholder, options, value, onChange }: InterestSelectProps) {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);

@@ -11,12 +11,6 @@ const MAX_FRAMES = 420;
 const FONT_SIZE = 16;
 const GLYPHS = 'アイウエオカキクケコサシスセソ0123456789ABCDEF';
 
-/**
- * Konami-code matrix rain.
- *
- * The canvas element and its rAF loop only exist while the egg is on screen —
- * nothing is allocated for the 99.9% of visits that never trigger it.
- */
 export function KonamiEasterEgg({ copy }: { copy: Dictionary['easterEgg'] }) {
   const [active, setActive] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -29,7 +23,6 @@ export function KonamiEasterEgg({ copy }: { copy: Dictionary['easterEgg'] }) {
 
     const dismiss = () => setActive(false);
     const autoClose = window.setTimeout(dismiss, DURATION_MS);
-    // Delayed so the keypress that triggered the egg doesn't also close it.
     const armDismiss = window.setTimeout(() => {
       document.addEventListener('pointerdown', dismiss, { once: true });
       document.addEventListener('keydown', dismiss, { once: true });

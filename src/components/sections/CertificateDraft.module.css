@@ -1,11 +1,3 @@
-/**
- * Stand-in for a certificate that has not been issued yet.
- *
- * Drawn as the blank itself — engraving frame, guilloche security pattern and
- * an unfinished seal — rather than as generic loading bars, so it reads as
- * "this document is still being earned" instead of "this image failed".
- */
-
 .draft {
   position: relative;
   width: 100%;
@@ -16,7 +8,6 @@
     var(--surface-card-raised);
 }
 
-/* Faint plate grid behind the blank. */
 .draft::before {
   content: '';
   position: absolute;
@@ -28,7 +19,6 @@
   opacity: 0.28;
 }
 
-/* Fills the whole media box — the blank is the artwork, not a chip in it. */
 .canvas {
   position: relative;
   display: block;
@@ -36,19 +26,16 @@
   height: 100%;
 }
 
-/* Marching ants around the certificate border. */
 .frame {
   animation: var(--kf-dash-flow) 2.6s linear infinite;
 }
 
-/* Outer dashed ring of the seal, turning slowly. */
 .sealRing {
   transform-box: fill-box;
   transform-origin: center;
   animation: var(--kf-spin-slow) 14s linear infinite;
 }
 
-/* Arc showing how much of the course is done. */
 .sealProgress {
   animation: var(--kf-seal-draw) 5.2s var(--ease-out) infinite;
 }

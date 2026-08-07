@@ -3,13 +3,6 @@
 import { useEffect, useRef } from 'react';
 import { useFinePointer, useReducedMotion } from './useMediaQuery';
 
-/**
- * Depth parallax driven by the pointer inside a zone element.
- *
- * Children opt in with `data-parallax-depth="24"`. Positions are written
- * straight to `style.transform` inside a single rAF — never through React
- * state, so moving the mouse across the hero costs zero re-renders.
- */
 export function usePointerParallax<T extends HTMLElement>() {
   const zoneRef = useRef<T>(null);
   const reducedMotion = useReducedMotion();

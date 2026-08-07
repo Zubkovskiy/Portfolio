@@ -2,14 +2,6 @@
 
 import { useEffect } from 'react';
 
-/**
- * Feeds `--mx` / `--my` to whichever `[data-shine]` element the pointer is
- * currently over, so its radial highlight follows the cursor.
- *
- * One delegated document listener for the entire page instead of a pair of
- * listeners per button, and writes are batched into a single rAF.
- * Renders nothing.
- */
 export function PointerGlow() {
   useEffect(() => {
     if (!window.matchMedia('(pointer: fine)').matches) return;

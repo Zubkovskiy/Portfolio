@@ -1,11 +1,6 @@
-/**
- * Animated React component tree — the illustration on the frontend service card.
- * Purely decorative: `aria-hidden` is applied by the card that renders it.
- */
 export function ComponentTreeDiagram() {
   return (
     <svg viewBox="0 0 330 288" width="100%" height="100%" role="presentation" focusable="false">
-      {/* Connectors */}
       <path
         d="M165 68 L165 82 Q165 88 159 88 L58 88 Q52 88 52 94 L52 102 M165 88 L165 102 M171 88 L272 88 Q278 88 278 94 L278 102"
         fill="none"
@@ -34,13 +29,11 @@ export function ComponentTreeDiagram() {
         style={{ animation: 'dash-flow 1.8s linear infinite', animationDelay: '.6s' }}
       />
 
-      {/* Junctions */}
       <circle cx="165" cy="88" r="2.2" fill="var(--accent)" />
       <circle cx="52" cy="88" r="2.2" fill="var(--border-strong)" />
       <circle cx="278" cy="88" r="2.2" fill="var(--border-strong)" />
       <circle cx="165" cy="150" r="2.2" fill="var(--accent)" />
 
-      {/* Root node */}
       <g style={{ transformBox: 'fill-box', transformOrigin: 'center', animation: 'node-pop 6s ease-in-out infinite' }}>
         <rect
           x="118"
@@ -65,7 +58,6 @@ export function ComponentTreeDiagram() {
         </text>
       </g>
 
-      {/* Layer 2 */}
       {(
         [
           { x: 16, label: 'Header', delay: '.5s' },
@@ -98,7 +90,6 @@ export function ComponentTreeDiagram() {
         </g>
       ))}
 
-      {/* Layer 3 */}
       {(
         [
           { x: 82, label: 'Card', delay: '1.8s' },
@@ -144,7 +135,6 @@ export function ComponentTreeDiagram() {
         </text>
       </g>
 
-      {/* Render bus */}
       <path
         d="M118 190 L118 234 M52 134 L52 234 M52 234 L278 234"
         fill="none"

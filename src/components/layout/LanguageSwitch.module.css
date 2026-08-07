@@ -7,8 +7,6 @@
   border: 1px solid var(--border-default);
 }
 
-/* Sliding lime pill. Positioned with a transform so switching languages is a
-   compositor-only animation. */
 .indicator {
   position: absolute;
   inset-block: 4px;

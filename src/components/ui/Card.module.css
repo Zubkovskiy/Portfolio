@@ -20,7 +20,6 @@
   }
 }
 
-/* Left accent bar — the service/testimonial card motif. */
 .accentBar {
   position: absolute;
   inset-block: 0;
@@ -29,7 +28,6 @@
   background: var(--accent);
 }
 
-/* Full-height card inside a stretched grid row. */
 .fill {
   height: 100%;
 }

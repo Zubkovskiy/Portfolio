@@ -27,7 +27,6 @@ export async function generateMetadata({
   };
 }
 
-/** Section header with a lime mark and a rule running to the edge. */
 function SheetHeading({ children }: { children: string }) {
   return (
     <h2 className={styles.sectionTitle}>
@@ -104,7 +103,6 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
                       <span className={styles.entryPeriod}>{item.period}</span>
                       <div className={styles.entryBody}>
                         <div className={styles.entryTitle}>{item.title}</div>
-                        {/* Either part may be absent — join only what exists. */}
                         <div className={styles.entryMeta}>
                           {[item.institution, item.description].filter(Boolean).join(' · ')}
                         </div>
@@ -125,7 +123,6 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
                 <SheetHeading>{cv.sections.skills}</SheetHeading>
                 <div className={styles.skillGroups}>
                   {skills.groups.map((group, index) => {
-                    // The last group is "Currently learning" — inverted on purpose.
                     const learning = index === skills.groups.length - 1;
                     return (
                       <div key={group.label}>

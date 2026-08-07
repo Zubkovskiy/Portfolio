@@ -12,7 +12,6 @@ const SOCIAL_ICONS = {
   telegram: Send,
 } as const;
 
-/** Contact section: working form on the left, direct details on the right. */
 export function Contact({ contact }: { contact: Dictionary['contact'] }) {
   return (
     <Section id="contact" labelledBy="contact-title">

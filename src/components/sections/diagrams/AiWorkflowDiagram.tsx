@@ -1,11 +1,6 @@
-/**
- * Animated AI automation pipeline — the illustration on the automation
- * service card. Purely decorative.
- */
 export function AiWorkflowDiagram() {
   return (
     <svg viewBox="0 0 330 288" width="100%" height="100%" role="presentation" focusable="false">
-      {/* Flow connectors */}
       <path d="M62 112 L100 112" fill="none" stroke="var(--border-strong)" strokeWidth="1.3" strokeDasharray="4 5" style={{ animation: 'dash-flow 1.1s linear infinite' }} />
       <path d="M206 112 L220 112" fill="none" stroke="var(--border-strong)" strokeWidth="1.3" strokeDasharray="4 5" style={{ animation: 'dash-flow 1.1s linear infinite', animationDelay: '.2s' }} />
       <path d="M260 102 C278 94 278 66 294 66" fill="none" stroke="var(--border-strong)" strokeWidth="1.3" strokeDasharray="4 5" style={{ animation: 'dash-flow 1.4s linear infinite' }} />
@@ -19,14 +14,12 @@ export function AiWorkflowDiagram() {
         false
       </text>
 
-      {/* Trigger */}
       <path d="M8 104 L14 104 L11 110 L17 110 L8 122 L11 113 L6 113 Z" fill="var(--accent)" opacity=".85" />
       <rect x="22" y="96" width="40" height="32" rx="9" fill="var(--surface-card)" stroke="var(--border-default)" strokeWidth="1.2" />
       <text x="42" y="116" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="9" fill="var(--text-muted)">
         Form
       </text>
 
-      {/* Agent */}
       <rect x="100" y="82" width="106" height="58" rx="12" fill="var(--surface-card)" stroke="var(--accent)" strokeWidth="1.3" />
       <rect x="100" y="82" width="106" height="58" rx="12" fill="none" stroke="var(--accent)" strokeWidth="3" opacity=".3" style={{ animation: 'node-glow 2.6s ease-in-out infinite' }} />
       <rect x="110" y="99" width="24" height="24" rx="7" fill="var(--accent)" />
@@ -40,7 +33,6 @@ export function AiWorkflowDiagram() {
         tools
       </text>
 
-      {/* Branch */}
       <rect x="220" y="96" width="40" height="32" rx="9" fill="var(--surface-card)" stroke="var(--border-default)" strokeWidth="1.2" />
       <path d="M230 106 L250 106 M230 112 L250 112 M230 118 L250 118" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round" />
 
@@ -50,7 +42,6 @@ export function AiWorkflowDiagram() {
       <rect x="294" y="142" width="32" height="32" rx="9" fill="var(--surface-card)" stroke="var(--border-default)" strokeWidth="1.2" />
       <path d="M303 158 L317 158 M310 151 L310 165" stroke="var(--text-muted)" strokeWidth="1.6" strokeLinecap="round" />
 
-      {/* Tool row */}
       {(
         [
           { x: 60, w: 72, label: 'Claude', cx: 96 },

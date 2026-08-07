@@ -7,7 +7,6 @@ import styles from './About.module.css';
 
 const PILLAR_ICONS = [Code2, Bot, Network, UserRound] as const;
 
-/** Profile section: bio + career objective beside a profile.json terminal card. */
 export function About({ about, contact }: { about: Dictionary['about']; contact: Dictionary['contact'] }) {
   const card = about.profileCard;
 

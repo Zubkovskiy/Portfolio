@@ -1,19 +1,10 @@
-/**
- * The content contract. Both dictionaries are typed as `Dictionary`, so a
- * string that exists in EN but not in UA is a compile error, not a blank
- * spot on the page.
- */
-
 export type NavLink = {
-  /** Stable id — used as a React key and by the scroll-spy. */
   key: string;
   label: string;
-  /** In-page anchor, e.g. '#skills'. */
   href: string;
 };
 
 export type HeroStat = {
-  /** Numeric-leading string, e.g. '1.5' or '12+'. The leading number counts up. */
   value: string;
   label: string;
 };
@@ -26,7 +17,6 @@ export type SkillGroup = {
 export type LanguageSkill = {
   name: string;
   level: string;
-  /** 0–100 proficiency bar. Explicit, so it is never inferred from a regex. */
   proficiency: number;
 };
 
@@ -41,54 +31,38 @@ export type ProjectItem = {
   tags: string[];
   description: string;
   linkLabel: string;
-  /** Live demo. Omit while a project is still a placeholder. */
   href?: string;
-  /** Screenshot path under /public. */
   image?: string;
-  /** Short factual role line, e.g. "Solo build · 2025". */
   meta?: string;
 };
 
 export type EducationItem = {
   period: string;
   title: string;
-  /**
-   * Optional: some entries have no name worth printing. Better to leave it
-   * out than to ship a "add later" placeholder that never gets filled.
-   */
   institution?: string;
   description?: string;
 };
 
-/** One track inside a multi-part course, e.g. frontend vs backend. */
 export type CertificatePart = {
   label: string;
-  /** 0–100 completion of this track. */
   percent: number;
 };
 
 export type CertificateItem = {
   title: string;
   issuer: string;
-  /** Short factual line: hours, date, credential id. */
   meta?: string;
   status: 'complete' | 'in-progress';
-  /** 0–100 overall completion. */
   percent: number;
-  /** Path under /public. Omit to render the labelled empty slot. */
   image?: string;
-  /** Caption for the image slot — also the alt text fallback. */
   imageCaption: string;
-  /** Public verification link, when the issuer provides one. */
   verifyUrl?: string;
   verifyLabel?: string;
-  /** Per-track breakdown, shown instead of a single bar when present. */
   parts?: CertificatePart[];
 };
 
 export type SectionCopy = {
   eyebrow: string;
-  /** Oversized faint word rendered behind the heading. */
   ghost: string;
   title: string;
   highlight: string;
@@ -98,7 +72,6 @@ export type Dictionary = {
   meta: {
     title: string;
     description: string;
-    /** Short description for og/twitter cards. */
     ogDescription: string;
     keywords: string[];
   };
@@ -116,7 +89,6 @@ export type Dictionary = {
     bio: string;
     ctaPrimary: string;
     ctaDownload: string;
-    /** Narrow-screen label, where the full wording no longer fits. */
     ctaDownloadShort: string;
     stats: HeroStat[];
     codeCaption: string;
@@ -196,14 +168,12 @@ export type Dictionary = {
       errorMessage: string;
       mailtoFallback: string;
       mailtoFallbackAction: string;
-      /** Inline messages shown under the field that failed validation. */
       fieldErrors: {
         name: string;
         email: string;
         phone: string;
         message: string;
       };
-      /** Shown after too many submissions from one address. */
       rateLimitError: string;
     };
     labels: {
@@ -246,7 +216,6 @@ export type Dictionary = {
     };
     profile: string[];
     objective: string;
-    /** Status wording for the CV's certificate list, keyed by item status. */
     statusLabels: Record<'complete' | 'in-progress', string>;
   };
   a11y: {

@@ -11,7 +11,6 @@ export type SocialIconButtonProps = {
   className?: string;
 };
 
-/** Circular icon link for social profiles. */
 export function SocialIconButton({
   icon,
   href,
@@ -20,7 +19,6 @@ export function SocialIconButton({
   size = 'md',
   className,
 }: SocialIconButtonProps) {
-  // Placeholder links must not advertise a destination they don't have.
   const isPlaceholder = href === '#';
   const external = href.startsWith('http');
 

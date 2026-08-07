@@ -20,10 +20,6 @@ function getStore(query: string) {
   return store;
 }
 
-/**
- * SSR-safe media query hook. Returns `serverFallback` during server render and
- * the first client paint, then the real value — so the markup never mismatches.
- */
 export function useMediaQuery(query: string, serverFallback = false): boolean {
   return useSyncExternalStore(
     (callback) => (typeof window === 'undefined' ? () => {} : getStore(query).subscribe(callback)),
@@ -32,12 +28,10 @@ export function useMediaQuery(query: string, serverFallback = false): boolean {
   );
 }
 
-/** True when the visitor asked the OS to reduce motion. */
 export function useReducedMotion(): boolean {
   return useMediaQuery('(prefers-reduced-motion: reduce)', false);
 }
 
-/** True for mouse/trackpad pointers — gates hover-only effects like tilt. */
 export function useFinePointer(): boolean {
   return useMediaQuery('(pointer: fine)', false);
 }

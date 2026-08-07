@@ -9,15 +9,12 @@ export type ProjectCardProps = {
   tags: readonly string[];
   description: string;
   linkLabel: string;
-  /** Live demo URL. Without it the card renders as a non-clickable preview. */
   href?: string;
   imageSrc?: string;
   imageCaption: string;
-  /** Short role/scope line under the title. */
   meta?: string;
 };
 
-/** Renders the media box as a link when there is somewhere to go. */
 function MediaWrapper({
   href,
   title,
@@ -44,7 +41,6 @@ function MediaWrapper({
   );
 }
 
-/** Project tile: screenshot, stack tags, summary and a live-demo link. */
 export function ProjectCard({
   title,
   tags,
@@ -57,12 +53,6 @@ export function ProjectCard({
 }: ProjectCardProps) {
   return (
     <article className={styles.card}>
-      {/*
-        The screenshot is a second route to the same page. It is removed from
-        the tab order and hidden from assistive tech on purpose — keyboard and
-        screen-reader users already get the labelled link below, and a
-        duplicate stop with no useful name would only be noise.
-      */}
       <MediaWrapper href={href} title={title}>
         <ImageSlot
           src={imageSrc}

@@ -8,13 +8,11 @@ export type TagProps = {
   children: ReactNode;
   tone?: TagTone;
   size?: 'sm' | 'md';
-  /** Decorative tilt in degrees, for the hero's tag cloud. */
   rotate?: number;
   className?: string;
   style?: CSSProperties;
 };
 
-/** Small pill label. */
 export function Tag({ children, tone = 'neutral', size = 'sm', rotate = 0, className, style }: TagProps) {
   return (
     <span

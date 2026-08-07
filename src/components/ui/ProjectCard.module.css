@@ -19,8 +19,6 @@
   }
 }
 
-/* Closer to the native ratio of the screenshots (~1.1–1.5), so `cover`
-   trims only the edges instead of slicing the page in half. */
 .media {
   position: relative;
   display: block;
@@ -29,7 +27,6 @@
   overflow: hidden;
 }
 
-/* Cue that the screenshot itself opens the site. */
 .mediaOverlay {
   position: absolute;
   inset: 0;

@@ -1,7 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react';
 import styles from './Hero.module.css';
 
-/** Syntax-coloured fragments of the fake source file in the hero. */
 const CODE_LINES: ReactNode[][] = [
   [
     <span key="a" className={styles.kw}>
@@ -121,7 +120,6 @@ const CODE_LINES: ReactNode[][] = [
   ],
 ];
 
-/** Mock editor window — the hero's abstract "portrait". Decorative. */
 export function HeroCodeWindow({ caption, className }: { caption: string; className?: string }) {
   return (
     <div className={className} aria-hidden="true">

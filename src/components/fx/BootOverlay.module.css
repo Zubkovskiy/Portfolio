@@ -14,11 +14,6 @@
   opacity: 0;
 }
 
-/*
- * The inline boot script in <head> stamps `data-booted` on <html> for repeat
- * visits and for reduced-motion, so the overlay never flashes before React
- * hydrates.
- */
 :global(html[data-booted]) .overlay {
   display: none;
 }

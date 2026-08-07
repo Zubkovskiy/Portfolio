@@ -9,7 +9,6 @@ export type IconBadgeProps = {
   className?: string;
 };
 
-/** Icon container using the brand's asymmetric blob corner. */
 export function IconBadge({ icon, tone = 'soft', size = 'md', className }: IconBadgeProps) {
   return (
     <span className={cx(styles.badge, styles[tone], styles[size], className)} aria-hidden="true">

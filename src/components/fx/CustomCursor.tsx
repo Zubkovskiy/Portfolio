@@ -7,14 +7,6 @@ import styles from './CustomCursor.module.css';
 const HOVER_SELECTOR = 'a, button, input, textarea, select, [data-cursor-hover]';
 const MAX_TILT_DEG = 12;
 
-/**
- * Lime arrow cursor that leans into the direction of travel and swaps to a
- * hand over interactive elements.
- *
- * The rAF loop only runs while the pointer is actually moving: it parks itself
- * after the position settles and restarts on the next pointermove. An idle tab
- * therefore costs nothing, which the original always-on loop did not manage.
- */
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
 
@@ -44,7 +36,6 @@ export function CustomCursor() {
       const scale = pressed ? 0.85 : 1;
       cursor.style.transform = `translate3d(${mouseX - 7}px, ${mouseY - 3}px, 0) rotate(${tilt.toFixed(2)}deg) scale(${scale})`;
 
-      // Park the loop once the arrow has settled; pointermove wakes it again.
       const settled = Math.abs(velocity) < 0.1 && Math.abs(tilt) < 0.1;
       idleFrames = settled ? idleFrames + 1 : 0;
       if (idleFrames > 12) {

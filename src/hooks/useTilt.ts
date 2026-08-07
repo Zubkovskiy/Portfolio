@@ -5,13 +5,6 @@ import { useFinePointer, useReducedMotion } from './useMediaQuery';
 
 const MAX_TILT_DEG = 10;
 
-/**
- * 3D tilt-on-hover for a card.
- *
- * The element's bounding rect is measured once per pointer-enter instead of
- * on every pointermove — the card cannot move while you are hovering it, so
- * re-measuring per frame only bought forced layout reflows.
- */
 export function useTilt<T extends HTMLElement>(enabled = true) {
   const ref = useRef<T>(null);
   const reducedMotion = useReducedMotion();
@@ -57,7 +50,6 @@ export function useTilt<T extends HTMLElement>(enabled = true) {
       rect = null;
       element.style.transition = 'transform .5s var(--ease-out)';
       element.style.transform = '';
-      // Drop the compositor layer once the reset transition has finished.
       window.setTimeout(() => {
         element.style.willChange = '';
       }, 550);

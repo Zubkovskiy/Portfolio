@@ -7,11 +7,6 @@ import { siteConfig } from '@/lib/site';
 import { withBasePath } from '@/lib/utils';
 import '@/styles/globals.css';
 
-/**
- * This is the application's root layout — every route lives under a locale
- * segment, so `<html lang>` can be set from the URL rather than guessed.
- */
-
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
 }
@@ -70,7 +65,6 @@ export async function generateMetadata({
       googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
     },
     icons: {
-      // Metadata URLs are emitted as authored — basePath is ours to add.
       icon: [{ url: withBasePath('/favicon.svg'), type: 'image/svg+xml' }],
       apple: withBasePath('/favicon.svg'),
     },
@@ -90,10 +84,6 @@ export default async function RootLayout({
   return (
     <html lang={LOCALE_META[lang as Locale].htmlLang} className={fontVariables} suppressHydrationWarning>
       <head>
-        {/*
-          Decides before first paint whether this visit sees the boot sequence,
-          so returning visitors never get a flash of the overlay.
-        */}
         <script dangerouslySetInnerHTML={{ __html: BOOT_INLINE_SCRIPT }} />
       </head>
       <body>{children}</body>

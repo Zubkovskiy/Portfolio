@@ -15,7 +15,6 @@ const SEQUENCE = [
   'a',
 ] as const;
 
-/** Fires `onUnlock` when the Konami code is typed anywhere on the page. */
 export function useKonamiCode(onUnlock: () => void): void {
   const callbackRef = useRef(onUnlock);
   callbackRef.current = onUnlock;
@@ -33,7 +32,6 @@ export function useKonamiCode(onUnlock: () => void): void {
         }
         return;
       }
-      // A wrong key restarts the sequence — but it may itself be a valid start.
       index = key === SEQUENCE[0] ? 1 : 0;
     };
 

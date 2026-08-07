@@ -9,13 +9,6 @@ export type MarqueeProps = {
   className?: string;
 };
 
-/**
- * Full-bleed scrolling ticker used as a section divider.
- *
- * The list is duplicated once and the track translates by exactly -50%, which
- * is what makes the loop seamless. The copy is `aria-hidden` so assistive tech
- * reads the band a single time.
- */
 export function Marquee({ items, tone = 'accent', durationSec, className }: MarqueeProps) {
   if (items.length === 0) return null;
 

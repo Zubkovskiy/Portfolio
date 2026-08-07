@@ -1,27 +1,3 @@
-/**
- * Every keyframe used across the site, in one place.
- *
- * All of these are compositor-friendly (transform / opacity / clip-path).
- * Anything that animates layout properties would be a bug here.
- *
- * ---------------------------------------------------------------------------
- * IMPORTANT — how to reference these from a *.module.css file
- * ---------------------------------------------------------------------------
- * CSS Modules rewrites animation names as if they were local identifiers, so
- * writing `animation: pulse-glow 2s ...` inside a module compiles to
- * `animation: About_pulse-glow__hash 2s ...` — a keyframe that does not exist,
- * and the animation silently never runs.
- *
- * The keyframes below are global (this file is imported by globals.css, which
- * is not a module), so modules must reach them through the `--kf-*` variables
- * declared underneath. Variable values are left untouched by the scoping pass:
- *
- *     animation: var(--kf-pulse-glow) 2s ease-in-out infinite;   ✅ runs
- *     animation: pulse-glow 2s ease-in-out infinite;             ❌ silently dead
- *
- * Global stylesheets and inline `style` objects can use the bare name directly.
- */
-
 :root {
   --kf-marquee-scroll: marquee-scroll;
   --kf-float-y: float-y;
@@ -53,8 +29,6 @@
   --kf-check-draw: check-draw;
   --kf-spin: spin-slow;
 }
-
-/* --- Ambient loops --------------------------------------------------- */
 
 @keyframes marquee-scroll {
   from {
@@ -112,8 +86,6 @@
   }
 }
 
-/* --- Entrances -------------------------------------------------------- */
-
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -155,8 +127,6 @@
     transform: scaleX(1);
   }
 }
-
-/* --- Terminal / glitch ------------------------------------------------ */
 
 @keyframes code-typewipe {
   0% {
@@ -246,8 +216,6 @@
   }
 }
 
-/* --- Diagram / node graph --------------------------------------------- */
-
 @keyframes dash-flow {
   to {
     stroke-dashoffset: -18;
@@ -282,8 +250,6 @@
     transform: scale(0.9);
   }
 }
-
-/* --- Education timeline ------------------------------------------------ */
 
 @keyframes edu-dot-pulse {
   0%,
@@ -324,8 +290,6 @@
     opacity: 0;
   }
 }
-
-/* --- Footer divider ---------------------------------------------------- */
 
 @keyframes foot-sweep-l {
   0% {
@@ -385,8 +349,6 @@
   }
 }
 
-/* --- Misc --------------------------------------------------------------- */
-
 @keyframes cv-bounce {
   0%,
   100% {
@@ -397,11 +359,6 @@
   }
 }
 
-/*
- * Progress arc on the draft certificate's seal drawing itself up to 60%
- * and resetting. Circumference of r=26 is ~164, so an offset of 65 leaves
- * 60% of the ring stroked.
- */
 @keyframes seal-draw {
   0%,
   6% {
@@ -416,7 +373,6 @@
   }
 }
 
-/* One short horizontal nudge — draws the eye to a rejected field. */
 @keyframes shake-x {
   0%,
   100% {
@@ -439,17 +395,12 @@
   }
 }
 
-/*
- * Success tick drawing itself in. The element sets its own `stroke-dasharray`
- * to the path's length; this only has to run the offset down to zero.
- */
 @keyframes check-draw {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-/* Engraved guilloche lines fading in and out like a watermark. */
 @keyframes guilloche-breathe {
   0%,
   100% {

@@ -49,10 +49,6 @@ export const en: Dictionary = {
       { value: '2', label: 'Languages' },
     ],
     codeCaption: 'portfolio.tsx',
-    /**
-     * Ordered to match TAG_LAYOUT in Hero.tsx: first four ring the top,
-     * next two hug the sides, last four sit along the bottom.
-     */
     floatingTags: [
       'React',
       'Next.js',

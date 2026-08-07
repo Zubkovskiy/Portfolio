@@ -1,20 +1,6 @@
-/**
- * One passive scroll/resize listener for the whole page, throttled to a
- * single requestAnimationFrame tick, broadcasting a pre-computed snapshot.
- *
- * The design export attached a separate listener + its own rAF gate per
- * effect (progress bar, parallax, scroll-to-top ring…). Each one re-read
- * scrollTop/scrollHeight/clientHeight independently, so a single scroll
- * frame forced several layout reads. Here the metrics are measured once and
- * handed to every subscriber.
- */
-
 export type ScrollSnapshot = {
-  /** Pixels scrolled from the top of the document. */
   scrollY: number;
-  /** Scroll position as a 0–1 fraction of the maximum scrollable distance. */
   progress: number;
-  /** Viewport height in CSS pixels. */
   viewportHeight: number;
 };
 
@@ -66,11 +52,6 @@ function detach(): void {
   }
 }
 
-/**
- * Subscribes to scroll updates. The listener fires once immediately with the
- * current position so callers never render a stale initial state.
- * Returns an unsubscribe function.
- */
 export function onScroll(listener: Listener): () => void {
   listeners.add(listener);
   attach();

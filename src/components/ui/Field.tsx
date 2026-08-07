@@ -7,12 +7,10 @@ import styles from './Field.module.css';
 type BaseProps = {
   label: string;
   hint?: string;
-  /** Validation message. Its presence is what marks the field invalid. */
   error?: string;
   className?: string;
 };
 
-/** Label + control + hint/error, wired together for assistive tech. */
 function FieldShell({
   label,
   hint,
@@ -39,7 +37,6 @@ function FieldShell({
 
       {children}
 
-      {/* An error replaces the hint rather than stacking under it. */}
       {error ? (
         <span id={errorId} className={styles.error} role="alert">
           <AlertCircle className={styles.errorMark} size={13} aria-hidden="true" />

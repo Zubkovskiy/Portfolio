@@ -1,4 +1,3 @@
-/** Radii, shadows, blur, motion curves and durations. */
 :root {
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -6,7 +5,6 @@
   --radius-xl: 28px;
   --radius-2xl: 36px;
   --radius-pill: 999px;
-  /* Signature asymmetric "blob" corner — three rounded, one sharp. */
   --radius-blob: 8px 32px 32px 32px;
   --radius-blob-inv: 32px 8px 32px 32px;
 

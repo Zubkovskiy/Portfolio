@@ -3,8 +3,6 @@
   overflow: hidden;
 }
 
-/* --- Backdrop ---------------------------------------------------------- */
-
 .wash {
   position: absolute;
   inset: 0;
@@ -42,8 +40,6 @@
   animation: var(--kf-scanline-move) 6s linear infinite;
 }
 
-/* --- Layout ------------------------------------------------------------- */
-
 .inner {
   position: relative;
   z-index: 1;
@@ -55,8 +51,6 @@
   margin-inline: auto;
   padding: clamp(120px, 18vw, 168px) var(--container-pad) 96px;
 }
-
-/* --- Copy column --------------------------------------------------------- */
 
 .eyebrow {
   display: inline-block;
@@ -97,7 +91,6 @@
   color: var(--accent);
 }
 
-/* Two offset copies of the headline that tear for a few frames every 7s. */
 .glitchLime,
 .glitchWhite {
   position: absolute;
@@ -154,15 +147,12 @@
   display: none;
 }
 
-/* --- Stats -------------------------------------------------------------- */
-
 .stats {
   display: flex;
   gap: 44px;
   flex-wrap: nowrap;
 }
 
-/* Number sits centred over its caption rather than left-aligned against it. */
 .stat {
   text-align: center;
 }
@@ -172,7 +162,6 @@
   font-size: var(--text-3xl);
   font-weight: var(--weight-bold);
   color: var(--text-heading);
-  /* Reserves digit width so the count-up never reflows its neighbours. */
   font-variant-numeric: tabular-nums;
 }
 
@@ -181,8 +170,6 @@
   color: var(--text-muted);
   margin-top: 4px;
 }
-
-/* --- Visual column -------------------------------------------------------- */
 
 .visual {
   position: relative;
@@ -245,7 +232,6 @@
   flex-shrink: 0;
 }
 
-/* Typewriter wipe. `--type-delay` staggers each line. */
 .codeText {
   white-space: nowrap;
   clip-path: inset(0 100% 0 0);
@@ -274,8 +260,6 @@
   animation: var(--kf-caret-blink) 1s step-end infinite;
 }
 
-/* --- Floating tag cloud ---------------------------------------------------- */
-
 .tagAnchor {
   position: absolute;
 }
@@ -285,8 +269,6 @@
   animation: var(--kf-tag-drift) var(--drift-duration, 7s) ease-in-out infinite;
   animation-delay: var(--drift-delay, 0s);
 }
-
-/* --- Responsive ------------------------------------------------------------ */
 
 @media (max-width: 1000px) {
   .visual {
@@ -350,8 +332,6 @@
     min-height: 48px;
   }
 
-  /* Both buttons share the row here, so the CV one keeps its icon and drops
-     back to the bare document name rather than wrapping or overflowing. */
   .ctaLong {
     display: none;
   }

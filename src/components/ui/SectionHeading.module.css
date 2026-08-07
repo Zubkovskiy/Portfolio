@@ -7,7 +7,6 @@
   text-align: center;
 }
 
-/* Oversized faint word sitting behind the title. */
 .ghost {
   position: absolute;
   top: 50%;
@@ -47,8 +46,6 @@
   color: var(--text-heading);
 }
 
-/* Four bracket corners drawn with a single element via multiple gradients
-   would be cheaper, but four spans keep the 2px corner crisp at any zoom. */
 .corner {
   position: absolute;
   width: 10px;

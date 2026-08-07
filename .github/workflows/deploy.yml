@@ -3,10 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
-  # Lets the site be rebuilt from the Actions tab without a code change.
   workflow_dispatch:
 
-# Only the newest run matters; cancel an in-flight deploy it supersedes.
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -32,10 +30,9 @@ jobs:
         run: npm run check
 
       - name: Build the static export
-        # A repository variable overrides .env.production, but only when it
-        # actually holds something: Next leaves anything already in the
-        # environment alone, so exporting an unset variable as an empty string
-        # would blank the setting rather than fall through to the file.
+        # An unset repository variable arrives as an empty string, and Next
+        # leaves anything already in the environment alone — so blank it out
+        # here or it beats .env.production instead of falling through to it.
         run: |
           set -euo pipefail
           for name in NEXT_PUBLIC_SITE_URL NEXT_PUBLIC_BASE_PATH NEXT_PUBLIC_FORMSPREE_ENDPOINT; do
@@ -51,17 +48,14 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Pages runs the output through Jekyll unless told not to, and Jekyll
-          # drops every directory starting with an underscore — including _next.
+          # Jekyll would drop _next; .nojekyll turns it off.
           touch out/.nojekyll
 
           git fetch origin gh-pages --depth 1
           git worktree add pages origin/gh-pages
 
-          # Clear out the previously published site, but keep projects/: it
-          # holds the standalone demos the portfolio links to, which are hosted
-          # on this branch rather than built from this repository. The build's
-          # own projects/*.jpg screenshots are then merged in alongside them.
+          # Keep projects/: the standalone demos the portfolio links to live on
+          # this branch and are not built from this repository.
           find pages -mindepth 1 -maxdepth 1 ! -name .git ! -name projects -exec rm -rf {} +
           rsync -a out/ pages/
 

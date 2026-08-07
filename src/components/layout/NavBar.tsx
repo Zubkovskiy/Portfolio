@@ -16,7 +16,6 @@ export type NavBarProps = {
   a11y: Dictionary['a11y'];
 };
 
-/** Sticky top navigation with scroll-spy highlighting and a mobile drawer. */
 export function NavBar({ locale, nav, a11y }: NavBarProps) {
   const [open, setOpen] = useState(false);
   const menuId = useId();
@@ -24,7 +23,6 @@ export function NavBar({ locale, nav, a11y }: NavBarProps) {
   const sectionIds = nav.links.map((link) => link.href.slice(1));
   const activeId = useScrollSpy(sectionIds, sectionIds[0] ?? 'top');
 
-  // Close the drawer if the viewport grows past the breakpoint that hides it.
   useEffect(() => {
     if (!open) return;
     const query = window.matchMedia('(min-width: 1101px)');
@@ -73,11 +71,6 @@ export function NavBar({ locale, nav, a11y }: NavBarProps) {
         </div>
       </div>
 
-      {/*
-        The drawer stays mounted so opening and closing are both transitions
-        rather than a mount and an instant disappearance. `inert` takes it out
-        of the tab order and the accessibility tree while it is collapsed.
-      */}
       <div className={cx(styles.drawer, open && styles.drawerOpen)} inert={!open}>
         <nav id={menuId} className={styles.mobileNav} aria-label="Primary mobile">
           {nav.links.map((link) => (
