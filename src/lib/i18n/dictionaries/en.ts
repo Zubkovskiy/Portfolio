@@ -119,7 +119,7 @@ export const en: Dictionary = {
     highlight: 'Bohdan',
     bio: "I'm a frontend developer building interactive, production-ready interfaces. My path started with hand-written HTML and CSS, grew through JavaScript and React, and now runs on TypeScript, Next.js and AI-assisted workflows. I've shipped five public projects — from pixel-accurate landing pages to a full e-commerce storefront with client-side routing, global state and a persisted cart — and I currently write frontend at Liha Yunaited. I care about the craft as much as the code: semantic markup, predictable state, and interfaces that feel as good as they work.",
     goalTitle: 'Career Objective',
-    goal: "I do my best work on teams that share knowledge and give honest feedback. I'm deepening my backend skills — Node.js, APIs, data modelling — so I can carry a feature past the API boundary instead of stopping at it. Looking for frontend or full-stack work where I can own real features end to end, learn from stronger engineers, and grow into wider ownership.",
+    goal: "I do my best work on a team that shares what it knows and gives honest feedback. Right now I'm deepening my backend — Node.js, APIs, working with data — so I can see a feature through to the end instead of stopping where the frontend does. I'm looking for a frontend or full-stack role where I take a feature from idea to release, learn from stronger engineers, and grow into wider ownership.",
     profileCard: {
       fileName: 'profile.json',
       location: 'location',
@@ -393,7 +393,7 @@ export const en: Dictionary = {
       'Alongside frontend work I build practical AI automations — n8n workflows and LLM-backed pipelines — that remove repetitive manual work. Formal background in cybersecurity and computer systems; currently deepening backend skills to work full-stack.',
     ],
     objective:
-      'I do my best work on teams that share knowledge and give honest feedback. Looking for frontend or full-stack work where I can own real features end to end, learn from stronger engineers and grow into wider ownership — full-time, remote or freelance.',
+      'I do my best work on a team that shares what it knows and gives honest feedback. I am looking for a frontend or full-stack role where I take a feature from idea to release, learn from stronger engineers and grow into wider ownership — full-time, remote or freelance.',
     statusLabels: {
       complete: 'completed',
       'in-progress': 'in progress',
