@@ -150,6 +150,10 @@
   animation: var(--kf-cv-bounce) 1.6s ease-in-out infinite;
 }
 
+.ctaShort {
+  display: none;
+}
+
 /* --- Stats -------------------------------------------------------------- */
 
 .stats {
@@ -344,6 +348,16 @@
     padding-inline: 12px;
     font-size: 13.5px;
     min-height: 48px;
+  }
+
+  /* Both buttons share the row here, so the CV one keeps its icon and drops
+     back to the bare document name rather than wrapping or overflowing. */
+  .ctaLong {
+    display: none;
+  }
+
+  .ctaShort {
+    display: inline;
   }
 
   .stats {

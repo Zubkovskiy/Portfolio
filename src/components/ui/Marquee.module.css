@@ -50,9 +50,17 @@
   color: var(--text-heading);
 }
 
+/*
+ * Separator between items. Drawn as a rotating square rather than set as a
+ * character: iOS resolves several of the asterisk-like glyphs to a colour
+ * emoji from its own font, which lands in the band as a coloured blob no CSS
+ * can restyle. A shape has no font to substitute.
+ */
 .glyph {
-  display: inline-flex;
-  font-size: 20px;
+  flex: none;
+  width: 9px;
+  height: 9px;
+  background: currentcolor;
   animation: var(--kf-spin-slow) 6s linear infinite;
 }
 
@@ -72,5 +80,10 @@
 
   .text {
     font-size: 13px;
+  }
+
+  .glyph {
+    width: 7px;
+    height: 7px;
   }
 }

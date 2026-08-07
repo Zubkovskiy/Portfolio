@@ -42,6 +42,7 @@ export const ua: Dictionary = {
     bio: 'Створюю швидкі, доступні інтерфейси на React, TypeScript і Next.js та практичні автоматизації на основі ШІ. П’ять проєктів уже онлайн — зараз пишу фронтенд у «Лізі Юнайтед» і розвиваюся у full-stack.',
     ctaPrimary: 'Переглянути проєкти',
     ctaDownload: 'Завантажити CV',
+    ctaDownloadShort: 'CV',
     stats: [
       { value: '5', label: 'проєкти онлайн' },
       { value: '1.5', label: 'сертифіката' },

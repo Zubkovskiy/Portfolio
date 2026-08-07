@@ -116,6 +116,8 @@ export type Dictionary = {
     bio: string;
     ctaPrimary: string;
     ctaDownload: string;
+    /** Narrow-screen label, where the full wording no longer fits. */
+    ctaDownloadShort: string;
     stats: HeroStat[];
     codeCaption: string;
     floatingTags: string[];

@@ -121,7 +121,8 @@ export function Hero({ hero, cvHref }: HeroProps) {
               }
               iconPosition="left"
             >
-              {hero.ctaDownload}
+              <span className={styles.ctaLong}>{hero.ctaDownload}</span>
+              <span className={styles.ctaShort}>{hero.ctaDownloadShort}</span>
             </Button>
           </div>
 

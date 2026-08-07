@@ -73,13 +73,18 @@ export function NavBar({ locale, nav, a11y }: NavBarProps) {
         </div>
       </div>
 
-      {open ? (
+      {/*
+        The drawer stays mounted so opening and closing are both transitions
+        rather than a mount and an instant disappearance. `inert` takes it out
+        of the tab order and the accessibility tree while it is collapsed.
+      */}
+      <div className={cx(styles.drawer, open && styles.drawerOpen)} inert={!open}>
         <nav id={menuId} className={styles.mobileNav} aria-label="Primary mobile">
           {nav.links.map((link) => (
             <a
               key={link.key}
               href={link.href}
-              className={cx(styles.mobileLink)}
+              className={styles.mobileLink}
               aria-current={link.href.slice(1) === activeId ? 'true' : undefined}
               onClick={() => setOpen(false)}
             >
@@ -87,7 +92,7 @@ export function NavBar({ locale, nav, a11y }: NavBarProps) {
             </a>
           ))}
         </nav>
-      ) : null}
+      </div>
     </header>
   );
 }

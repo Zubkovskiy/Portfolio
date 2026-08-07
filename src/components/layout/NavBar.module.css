@@ -107,13 +107,43 @@
   border-color: var(--accent);
 }
 
+/*
+ * Collapsible drawer. The open row is `1fr` and the closed one `0fr`, which
+ * animates the panel to its natural height without hard-coding one — a
+ * max-height guess would either clip the links or coast through empty space
+ * before the panel appears to move.
+ */
+.drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.34s var(--ease-out),
+    opacity 0.24s var(--ease-out);
+}
+
+.drawerOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
 .mobileNav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2px 20px;
+  /* min-height clears the grid item's automatic minimum, which would
+     otherwise hold the row open at its content height. */
+  min-height: 0;
+  overflow: hidden;
   padding: 8px var(--container-pad) 20px;
-  border-top: 1px solid var(--border-default);
-  animation: var(--kf-fade-in-up) 0.25s var(--ease-out);
+  /* Kept transparent rather than absent so the collapsed panel is not a
+     stray hairline under the header. */
+  border-top: 1px solid transparent;
+  transition: border-color 0.34s var(--ease-out);
+}
+
+.drawerOpen .mobileNav {
+  border-top-color: var(--border-default);
 }
 
 .mobileLink {

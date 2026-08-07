@@ -42,6 +42,7 @@ export const en: Dictionary = {
     bio: 'I build fast, accessible interfaces with React, TypeScript and Next.js, and practical AI-driven automations. Five public projects shipped — currently writing frontend at Liha Yunaited and growing into full-stack.',
     ctaPrimary: 'View Projects',
     ctaDownload: 'Download CV',
+    ctaDownloadShort: 'CV',
     stats: [
       { value: '5', label: 'Live Projects' },
       { value: '1.5', label: 'Certificates' },

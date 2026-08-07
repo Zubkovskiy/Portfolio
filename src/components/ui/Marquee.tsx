@@ -32,9 +32,7 @@ export function Marquee({ items, tone = 'accent', durationSec, className }: Marq
               {...(copy === 1 ? { 'aria-hidden': true } : {})}
             >
               <span className={styles.text}>{item}</span>
-              <span className={styles.glyph} aria-hidden="true">
-                ✳
-              </span>
+              <span className={styles.glyph} aria-hidden="true" />
             </span>
           )),
         )}
