@@ -1,0 +1,114 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-6px);
+  }
+}
+
+/* Closer to the native ratio of the screenshots (~1.1–1.5), so `cover`
+   trims only the edges instead of slicing the page in half. */
+.media {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  background: var(--surface-card-raised);
+  overflow: hidden;
+}
+
+/* Cue that the screenshot itself opens the site. */
+.mediaOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(10 10 10 / 55%);
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+
+.mediaOverlay > * {
+  transform: scale(0.8);
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+@media (hover: hover) {
+  .card:hover .mediaOverlay {
+    opacity: 1;
+  }
+
+  .card:hover .mediaOverlay > * {
+    transform: none;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: var(--text-lg);
+  margin: 0 0 6px;
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  margin: 0 0 18px;
+  color: var(--text-body);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  width: fit-content;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--accent);
+}
+
+.arrow {
+  display: inline-flex;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .card:hover .arrow {
+    transform: translate(3px, -3px);
+  }
+}

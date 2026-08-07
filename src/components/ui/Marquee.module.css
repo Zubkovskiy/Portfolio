@@ -1,0 +1,76 @@
+.marquee {
+  overflow: hidden;
+  /* Full-bleed: breaks out of the centred content container. */
+  width: 100%;
+  contain: content;
+}
+
+.accent {
+  background: var(--accent);
+}
+
+.dark {
+  background: var(--surface-card);
+  border-block: 1px solid var(--border-default);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: var(--kf-marquee-scroll) var(--marquee-duration, var(--dur-marquee)) linear infinite;
+  will-change: transform;
+}
+
+/* Pausing on hover lets people actually read the band. */
+@media (hover: hover) {
+  .marquee:hover .track {
+    animation-play-state: paused;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 20px 28px;
+}
+
+.text {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xl);
+  white-space: nowrap;
+}
+
+.accent .text {
+  color: var(--text-on-accent);
+}
+
+.dark .text {
+  color: var(--text-heading);
+}
+
+.glyph {
+  display: inline-flex;
+  font-size: 20px;
+  animation: var(--kf-spin-slow) 6s linear infinite;
+}
+
+.accent .glyph {
+  color: var(--text-on-accent);
+}
+
+.dark .glyph {
+  color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .item {
+    gap: 13px;
+    padding: 9px 15px;
+  }
+
+  .text {
+    font-size: 13px;
+  }
+}

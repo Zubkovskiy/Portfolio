@@ -1,0 +1,51 @@
+/**
+ * Zubkivskiy Design System — color tokens.
+ * Near-black surfaces + a single saturated lime accent. No second accent hue.
+ */
+:root {
+  --color-bg: #0a0a0a;
+  --color-bg-elevated: #111111;
+  --color-surface: #151515;
+  --color-surface-2: #1b1b1b;
+  --color-surface-3: #212121;
+  --color-border: #262626;
+  --color-border-strong: #343434;
+
+  --color-lime: #a2ff01;
+  --color-lime-strong: #8cdd00;
+  --color-lime-soft: rgb(162 255 1 / 14%);
+  --color-lime-soft-2: rgb(162 255 1 / 8%);
+  --color-lime-glow: rgb(162 255 1 / 35%);
+
+  --color-ink: #0a0a0a;
+  --color-white: #ffffff;
+  --color-text-primary: #f6f7f2;
+  --color-text-secondary: #9c9c97;
+  --color-text-tertiary: #6a6a65;
+  --color-danger: #ff5a5a;
+  --color-warning: #ffc24b;
+
+  /* Semantic aliases — prefer these in components. */
+  --surface-page: var(--color-bg);
+  --surface-card: var(--color-surface);
+  --surface-card-hover: var(--color-surface-2);
+  --surface-card-raised: var(--color-surface-3);
+  --surface-inverse: var(--color-lime);
+
+  --border-default: var(--color-border);
+  --border-strong: var(--color-border-strong);
+  --border-accent: var(--color-lime);
+
+  --text-heading: var(--color-text-primary);
+  --text-body: var(--color-text-secondary);
+  --text-muted: var(--color-text-tertiary);
+  --text-on-accent: var(--color-ink);
+  --text-on-dark: var(--color-white);
+
+  --accent: var(--color-lime);
+  --accent-hover: var(--color-lime-strong);
+  --accent-soft: var(--color-lime-soft);
+  --accent-soft-2: var(--color-lime-soft-2);
+  --accent-glow: var(--color-lime-glow);
+  --focus-ring: var(--color-lime);
+}

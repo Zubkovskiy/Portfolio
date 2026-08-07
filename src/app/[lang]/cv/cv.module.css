@@ -1,0 +1,431 @@
+/**
+ * A4 CV sheet.
+ *
+ * Replaces the design export's <doc-page> custom element, which measured and
+ * paginated with JavaScript. Here the page box is declared to the browser with
+ * an @page rule, so printing is exact and needs no script at all.
+ */
+
+.stage {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 120px;
+  background: var(--color-bg);
+  min-height: 100dvh;
+}
+
+.sheet {
+  width: 210mm;
+  min-height: 297mm;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #12120f;
+  font-family: var(--font-body);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* --- Header ------------------------------------------------------------- */
+
+.header {
+  position: relative;
+  background: #0a0a0a;
+  color: #f6f7f2;
+  padding: 32px 46px 26px;
+  overflow: hidden;
+}
+
+.headerGlow {
+  position: absolute;
+  right: -70px;
+  top: -90px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: #a2ff01;
+  opacity: 0.14;
+  filter: blur(60px);
+}
+
+.headerInner {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 16px;
+}
+
+.monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px 22px 22px 22px;
+  background: #a2ff01;
+  color: #0a0a0a;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.docLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #a2ff01;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 1.04;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+  color: #f6f7f2;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 15px;
+  color: #c9cac3;
+  max-width: 430px;
+}
+
+.headerContacts {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.headerContact {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  font-size: 13px;
+  color: #f6f7f2;
+}
+
+.headerContact:hover {
+  color: #a2ff01;
+}
+
+.headerMuted {
+  color: #c9cac3;
+}
+
+.headerFine {
+  font-size: 12px;
+  color: #9c9c97;
+  margin-top: 2px;
+}
+
+.bullet {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a2ff01;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* --- Body --------------------------------------------------------------- */
+
+.body {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 38px;
+  padding: 28px 46px 30px;
+  flex: 1;
+  min-height: 0;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.colTight {
+  gap: 26px;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #12120f;
+  margin: 0 0 14px;
+}
+
+.sectionMark {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 2px 5px 5px 5px;
+  background: #a2ff01;
+  display: inline-block;
+}
+
+.sectionRule {
+  flex: 1;
+  height: 1px;
+  background: #e4e4de;
+  display: inline-block;
+}
+
+.paragraph {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.62;
+  color: #3b3b36;
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Timeline ----------------------------------------------------------- */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 14px;
+}
+
+.entryPeriod {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #6a6a65;
+  padding-top: 2px;
+}
+
+.entryBody {
+  border-left: 2px solid #e4e4de;
+  padding-left: 14px;
+}
+
+/* The most recent entry gets the lime rail. */
+.entryCurrent .entryBody {
+  border-left-color: #a2ff01;
+}
+
+.entryTitle {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #12120f;
+  margin-bottom: 3px;
+}
+
+.entryMeta {
+  font-size: 13px;
+  color: #5c5c58;
+}
+
+/* --- Skills ------------------------------------------------------------- */
+
+.skillGroups {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.skillLabel {
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6a6a65;
+  margin-bottom: 8px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  font-size: 12.5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f4f5f0;
+  border: 1px solid #e4e4de;
+  color: #22221f;
+}
+
+/* "Currently learning" inverts, matching the site's emphasis. */
+.chipLearning {
+  background: #0a0a0a;
+  border-color: #0a0a0a;
+  color: #a2ff01;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.rowSplit {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13.5px;
+}
+
+.rowName {
+  color: #12120f;
+  font-weight: 500;
+}
+
+.rowValue {
+  color: #6a6a65;
+  font-size: 12.5px;
+}
+
+.certList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+  color: #5c5c58;
+}
+
+.certTitle {
+  font-weight: 600;
+  color: #12120f;
+}
+
+.certStatus {
+  color: #6a6a65;
+}
+
+.certMeta {
+  font-size: 12px;
+  color: #6a6a65;
+  margin-top: 2px;
+}
+
+/* --- Footer ------------------------------------------------------------- */
+
+.sheetFooter {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 46px;
+  border-top: 1px solid #e4e4de;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: #6a6a65;
+}
+
+/* --- Floating actions ----------------------------------------------------- */
+
+.actions {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+  display: flex;
+  gap: 10px;
+}
+
+/* --- Responsive & print --------------------------------------------------- */
+
+@media (max-width: 800px) {
+  .stage {
+    padding: 16px 12px 110px;
+  }
+
+  .sheet {
+    width: 100%;
+    min-height: 0;
+  }
+
+  .header {
+    padding: 24px 22px 20px;
+  }
+
+  .headerInner {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .headerContacts {
+    align-items: flex-start;
+  }
+
+  .headerContact {
+    justify-content: flex-start;
+  }
+
+  .name {
+    font-size: 30px;
+  }
+
+  .body {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding: 22px;
+  }
+
+  .sheetFooter {
+    padding: 14px 22px;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  .stage {
+    padding: 0;
+    background: #fff;
+    min-height: 0;
+  }
+
+  .sheet {
+    width: 100%;
+    min-height: 0;
+    box-shadow: none;
+  }
+
+  /* Keep the dark header and lime accents in the printed PDF. */
+  .header,
+  .chipLearning,
+  .monogram,
+  .bullet,
+  .sectionMark {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

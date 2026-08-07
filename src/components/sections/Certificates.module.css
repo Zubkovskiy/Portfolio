@@ -1,0 +1,223 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  gap: 32px;
+  max-width: 1120px;
+  margin-inline: auto;
+}
+
+.tiltHost {
+  transition: transform 0.5s var(--ease-out);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-default);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/*
+ * Matches the 4:3 of a Udemy certificate, so the scan fills the card edge to
+ * edge and its text stays readable instead of shrinking into letterboxed bars.
+ */
+.media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border-default);
+  overflow: hidden;
+}
+
+/* A document scan sits on white paper — any leftover margin reads as the
+   sheet itself rather than as a gap in the card. */
+.mediaDocument {
+  background: #fff;
+}
+
+/* Slow lime scanner passing over the certificate scan. */
+.scanner {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.scannerBeam {
+  position: absolute;
+  inset-inline: 0;
+  height: 20%;
+  background: linear-gradient(180deg, transparent, rgb(162 255 1 / 12%), transparent);
+  animation: var(--kf-scan-sweep) 6s linear infinite;
+  animation-delay: var(--scan-delay, 0s);
+}
+
+.index {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: rgb(10 10 10 / 75%);
+  border: 1px solid var(--border-default);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+}
+
+.badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+}
+
+.badgeDone {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  box-shadow: var(--shadow-lime-glow-sm);
+}
+
+.badgeProgress {
+  background: rgb(10 10 10 / 75%);
+  border: 1px solid var(--accent);
+  color: var(--text-heading);
+}
+
+.badgePulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  animation: var(--kf-pulse-glow) 2s ease-in-out infinite;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 26px 28px 28px;
+}
+
+.title {
+  margin: 0 0 6px;
+  font-size: var(--text-lg);
+  color: var(--text-heading);
+}
+
+.issuer {
+  font-size: var(--text-sm);
+  color: var(--text-body);
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.verify {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  margin-top: 14px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--accent);
+}
+
+.verify:hover {
+  text-decoration: underline;
+}
+
+.rule {
+  height: 1px;
+  background: var(--border-default);
+  margin: 20px 0 18px;
+}
+
+/* Pushes the progress block to the bottom so both cards line up. */
+.parts,
+.progressHead {
+  margin-top: auto;
+}
+
+.parts {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.parts .progressHead {
+  margin-top: 0;
+}
+
+.partLabel {
+  font-size: var(--text-sm);
+  color: var(--text-heading);
+}
+
+.partPercent {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.progressHead {
+  display: flex;
+  align-items: center;
+  /* With no caption the percentage falls to the right on its own. */
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.progressHead > :only-child {
+  margin-left: auto;
+}
+
+
+.percent {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--accent);
+  box-shadow: var(--shadow-lime-glow-sm);
+  transform-origin: left;
+}
+
+/* The scanner beam would look wrong sweeping over white paper. */
+.mediaDocument .scanner {
+  display: none;
+}

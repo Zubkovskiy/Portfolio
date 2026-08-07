@@ -1,0 +1,45 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  pointer-events: none;
+  will-change: transform;
+  /* Hidden until the first pointermove writes a real position. */
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.cursor[data-visible='true'] {
+  opacity: 1;
+}
+
+.svg {
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 3px 7px rgb(0 0 0 / 50%));
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.cursor[data-hover='true'] .svg {
+  transform: scale(0.86);
+}
+
+.hand {
+  display: none;
+}
+
+.cursor[data-hover='true'] .arrow {
+  display: none;
+}
+
+.cursor[data-hover='true'] .hand {
+  display: inline;
+}
+
+/* Touch devices and small screens never get the custom cursor. */
+@media (hover: none), (max-width: 900px) {
+  .cursor {
+    display: none;
+  }
+}

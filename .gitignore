@@ -1,24 +1,44 @@
-# Logs
-logs
-*.log
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+.pnpm-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# env files
+.env
+.env*.local
 
-# Editor directories and files
+# typescript
+*.tsbuildinfo
+
+# editor
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+
+# vercel
+.vercel
+
+# Original Claude design export — kept locally as a reference for how the site
+# was derived. Not published: it is 6MB and its uploads/ folder holds
+# screenshots of a third-party template that are not ours to redistribute.
+/design-source

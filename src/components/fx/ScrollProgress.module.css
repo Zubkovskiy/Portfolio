@@ -1,0 +1,19 @@
+.rail {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  background: var(--color-border);
+  z-index: 200;
+  pointer-events: none;
+}
+
+.fill {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: var(--accent);
+  box-shadow: var(--shadow-lime-glow-sm);
+  will-change: transform;
+}

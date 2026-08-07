@@ -1,0 +1,14 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.tiltHost > * {
+  height: 100%;
+}
+
+.tiltHost {
+  transition: transform 0.5s var(--ease-out);
+}

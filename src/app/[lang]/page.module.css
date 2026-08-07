@@ -1,0 +1,5 @@
+/* Lifts the page above the fixed background canvas. */
+.shell {
+  position: relative;
+  z-index: 1;
+}

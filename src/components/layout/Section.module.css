@@ -1,0 +1,32 @@
+.section {
+  padding-block: var(--section-pad-y);
+  padding-inline: var(--container-pad);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  /*
+   * Deliberately no `content-visibility: auto` here. It skips rendering for
+   * off-screen sections, but the estimated placeholder heights make in-page
+   * anchor jumps land in the wrong place — and this site's whole navigation is
+   * anchor links. Correct scroll positions are worth more than the paint saving
+   * on a page this size.
+   */
+}
+
+.narrow {
+  max-width: 900px;
+}
+
+.heading {
+  margin-bottom: 56px;
+}
+
+.headingTight {
+  margin-bottom: 16px;
+}
+
+.note {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  margin-bottom: 48px;
+}

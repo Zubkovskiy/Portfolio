@@ -1,0 +1,313 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+  gap: 32px;
+  align-items: start;
+}
+
+/* --- Form -------------------------------------------------------------- */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 20px;
+}
+
+.contactRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: end;
+}
+
+.orLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  padding-bottom: 16px;
+}
+
+/* Honeypot: off-screen but not display:none, so bots still fill it in. */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.alert {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  padding: 13px 17px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  animation: var(--kf-fade-in-up) 0.25s var(--ease-out);
+}
+
+/* One nudge on rejection — enough to notice, short enough not to annoy. */
+.alertShake {
+  animation:
+    var(--kf-fade-in-up) 0.25s var(--ease-out),
+    var(--kf-shake-x) 0.45s var(--ease-out) 0.1s;
+}
+
+.successMark {
+  display: inline-flex;
+  align-self: center;
+  color: var(--accent);
+}
+
+/*
+ * Draws the tick in rather than popping it. Only the check itself is dashed —
+ * the surrounding ring must stay solid. Path length is ~13.4, rounded up.
+ */
+.checkPath {
+  stroke-dasharray: 14;
+  stroke-dashoffset: 14;
+  animation: var(--kf-check-draw) 0.5s var(--ease-out) 0.15s forwards;
+}
+
+.spinner {
+  display: inline-flex;
+  animation: var(--kf-spin) 0.7s linear infinite;
+}
+
+.alertError {
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+}
+
+.alertSuccess {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.alertNotice {
+  border: 1px solid var(--border-strong);
+  color: var(--text-body);
+}
+
+.alertAction {
+  display: inline-block;
+  margin-top: 8px;
+  font-weight: var(--weight-semibold);
+  color: var(--accent);
+}
+
+/* --- Custom select ------------------------------------------------------- */
+
+.select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.selectLabel {
+  font-size: var(--text-sm);
+  color: var(--text-heading);
+  font-weight: var(--weight-medium);
+}
+
+.selectTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: var(--surface-card);
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 13px 16px;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text-heading);
+  cursor: pointer;
+  transition:
+    border-color 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out);
+}
+
+.selectTrigger:hover,
+.selectTrigger[aria-expanded='true'] {
+  border-color: var(--accent);
+}
+
+.placeholder {
+  color: var(--text-muted);
+}
+
+.chevron {
+  display: inline-flex;
+  color: var(--accent);
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.selectTrigger[aria-expanded='true'] .chevron {
+  transform: rotate(180deg);
+}
+
+.options {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline: 0;
+  z-index: 41;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  background: var(--surface-card-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevated);
+  animation: var(--kf-fade-in-up) 0.22s var(--ease-out);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  border-radius: 8px;
+  padding: 11px 12px;
+  font-size: var(--text-sm);
+  color: var(--text-body);
+  cursor: pointer;
+  transition:
+    background-color 0.2s var(--ease-out),
+    color 0.2s var(--ease-out);
+}
+
+.option:hover,
+.option[aria-selected='true'] {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* --- Info card ------------------------------------------------------------ */
+
+.info {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-default);
+  overflow: hidden;
+  align-self: start;
+}
+
+.infoBody {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--surface-card);
+  padding: 32px;
+}
+
+.infoLabel {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: var(--text-sm);
+  color: var(--accent);
+  font-weight: var(--weight-semibold);
+  margin-bottom: 8px;
+}
+
+.infoBullet {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 2px 5px 5px 5px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+.infoValue {
+  font-size: var(--text-base);
+  color: var(--text-heading);
+  line-height: var(--leading-relaxed);
+}
+
+.infoLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.infoLink {
+  width: fit-content;
+  font-size: var(--text-base);
+  color: var(--text-heading);
+  transition: color 0.25s var(--ease-out);
+}
+
+.infoLink:hover {
+  color: var(--accent);
+}
+
+/* Lime foot with the angled top edge from the reference. */
+.infoFoot {
+  position: relative;
+  background: var(--accent);
+  padding: 34px 32px 26px;
+  margin-top: -14px;
+  clip-path: polygon(0 22px, 100% 0, 100% 100%, 0 100%);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.availabilityDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-on-accent);
+  display: inline-block;
+  animation: var(--kf-pulse-glow) 2s ease-in-out infinite;
+}
+
+.availabilityText {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-on-accent);
+  opacity: 0.75;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 520px) {
+  .contactRow {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .orLabel {
+    padding-bottom: 0;
+    text-align: center;
+  }
+}

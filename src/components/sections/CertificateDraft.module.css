@@ -1,0 +1,72 @@
+/**
+ * Stand-in for a certificate that has not been issued yet.
+ *
+ * Drawn as the blank itself — engraving frame, guilloche security pattern and
+ * an unfinished seal — rather than as generic loading bars, so it reads as
+ * "this document is still being earned" instead of "this image failed".
+ */
+
+.draft {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 38%, rgb(162 255 1 / 7%), transparent 70%),
+    var(--surface-card-raised);
+}
+
+/* Faint plate grid behind the blank. */
+.draft::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border-default) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-default) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.28;
+}
+
+/* Fills the whole media box — the blank is the artwork, not a chip in it. */
+.canvas {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Marching ants around the certificate border. */
+.frame {
+  animation: var(--kf-dash-flow) 2.6s linear infinite;
+}
+
+/* Outer dashed ring of the seal, turning slowly. */
+.sealRing {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: var(--kf-spin-slow) 14s linear infinite;
+}
+
+/* Arc showing how much of the course is done. */
+.sealProgress {
+  animation: var(--kf-seal-draw) 5.2s var(--ease-out) infinite;
+}
+
+.guilloche {
+  animation: var(--kf-guilloche-breathe) 6s var(--ease-in-out) infinite;
+  animation-delay: var(--wave-delay, 0s);
+}
+
+.caption {
+  position: absolute;
+  bottom: 14px;
+  inset-inline: 0;
+  text-align: center;
+  padding-inline: 16px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

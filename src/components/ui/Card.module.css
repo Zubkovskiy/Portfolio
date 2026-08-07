@@ -1,0 +1,35 @@
+.card {
+  position: relative;
+  background: var(--surface-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--card-pad, 28px);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .hoverable:hover {
+    background: var(--surface-card-hover);
+    border-color: var(--border-strong);
+    transform: translateY(-6px);
+  }
+}
+
+/* Left accent bar — the service/testimonial card motif. */
+.accentBar {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 3px;
+  background: var(--accent);
+}
+
+/* Full-height card inside a stretched grid row. */
+.fill {
+  height: 100%;
+}
