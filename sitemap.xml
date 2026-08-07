@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url>
+<loc>https://zubkovskiy.github.io/Portfolio/en</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://zubkovskiy.github.io/Portfolio/en" />
+<xhtml:link rel="alternate" hreflang="uk" href="https://zubkovskiy.github.io/Portfolio/ua" />
+<lastmod>2026-08-07T15:06:47.659Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://zubkovskiy.github.io/Portfolio/en/cv</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://zubkovskiy.github.io/Portfolio/en/cv" />
+<xhtml:link rel="alternate" hreflang="uk" href="https://zubkovskiy.github.io/Portfolio/ua/cv" />
+<lastmod>2026-08-07T15:06:47.659Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://zubkovskiy.github.io/Portfolio/ua</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://zubkovskiy.github.io/Portfolio/en" />
+<xhtml:link rel="alternate" hreflang="uk" href="https://zubkovskiy.github.io/Portfolio/ua" />
+<lastmod>2026-08-07T15:06:47.659Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://zubkovskiy.github.io/Portfolio/ua/cv</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://zubkovskiy.github.io/Portfolio/en/cv" />
+<xhtml:link rel="alternate" hreflang="uk" href="https://zubkovskiy.github.io/Portfolio/ua/cv" />
+<lastmod>2026-08-07T15:06:47.659Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+</urlset>

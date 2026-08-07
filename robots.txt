@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://zubkovskiy.github.io/Portfolio
+Sitemap: https://zubkovskiy.github.io/Portfolio/sitemap.xml
