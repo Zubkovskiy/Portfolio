@@ -2,6 +2,7 @@ import { Github, Linkedin, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { Button, SocialIconButton } from '@/components/ui';
 import type { Dictionary } from '@/lib/i18n';
 import { mailtoHref, siteConfig, telHref } from '@/lib/site';
+import { cx } from '@/lib/utils';
 import { Logo } from './Logo';
 import styles from './Footer.module.css';
 
@@ -61,7 +62,7 @@ export function Footer({ dict }: { dict: Dictionary }) {
           <p className={styles.tagline}>{footer.tagline}</p>
         </div>
 
-        <div className={styles.column}>
+        <div className={cx(styles.column, styles.navColumn)}>
           <h3 className={styles.columnTitle}>
             <span className={styles.columnBullet} aria-hidden="true" />
             {footer.navTitle}

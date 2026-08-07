@@ -205,11 +205,11 @@ export const en: Dictionary = {
         issuer: 'In progress',
         meta: 'Frontend track finished, backend under way',
         status: 'in-progress',
-        percent: 60,
+        percent: 70,
         imageCaption: 'Certificate scan goes here once finished',
         parts: [
           { label: 'Frontend', percent: 100 },
-          { label: 'Backend', percent: 20 },
+          { label: 'Backend', percent: 40 },
         ],
       },
     ],

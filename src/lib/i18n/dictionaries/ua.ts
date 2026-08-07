@@ -205,11 +205,11 @@ export const ua: Dictionary = {
         issuer: 'У процесі',
         meta: 'Фронтенд-частину завершено, бекенд триває',
         status: 'in-progress',
-        percent: 60,
+        percent: 70,
         imageCaption: 'Скан з’явиться після завершення курсу',
         parts: [
           { label: 'Фронтенд', percent: 100 },
-          { label: 'Бекенд', percent: 20 },
+          { label: 'Бекенд', percent: 40 },
         ],
       },
     ],
