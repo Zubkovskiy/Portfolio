@@ -4,6 +4,7 @@ import { BOOT_INLINE_SCRIPT } from '@/components/fx/BootOverlay';
 import { fontVariables } from '@/lib/fonts';
 import { LOCALES, LOCALE_META, getDictionary, isLocale, type Locale } from '@/lib/i18n';
 import { siteConfig } from '@/lib/site';
+import { withBasePath } from '@/lib/utils';
 import '@/styles/globals.css';
 
 /**
@@ -69,8 +70,9 @@ export async function generateMetadata({
       googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
     },
     icons: {
-      icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
-      apple: '/favicon.svg',
+      // Metadata URLs are emitted as authored — basePath is ours to add.
+      icon: [{ url: withBasePath('/favicon.svg'), type: 'image/svg+xml' }],
+      apple: withBasePath('/favicon.svg'),
     },
   };
 }

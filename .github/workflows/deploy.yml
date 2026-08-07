@@ -1,0 +1,70 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  # Lets the site be rebuilt from the Actions tab without a code change.
+  workflow_dispatch:
+
+# Only the newest run matters; cancel an in-flight deploy it supersedes.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the source
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Verify types and lint
+        run: npm run check
+
+      - name: Build the static export
+        run: npm run build
+        env:
+          # Repository variables override .env.production when they are set.
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+          NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH }}
+          NEXT_PUBLIC_FORMSPREE_ENDPOINT: ${{ vars.NEXT_PUBLIC_FORMSPREE_ENDPOINT }}
+
+      - name: Publish to the gh-pages branch
+        run: |
+          set -euo pipefail
+
+          # Pages runs the output through Jekyll unless told not to, and Jekyll
+          # drops every directory starting with an underscore — including _next.
+          touch out/.nojekyll
+
+          git fetch origin gh-pages --depth 1
+          git worktree add pages origin/gh-pages
+
+          # Clear out the previously published site, but keep projects/: it
+          # holds the standalone demos the portfolio links to, which are hosted
+          # on this branch rather than built from this repository. The build's
+          # own projects/*.jpg screenshots are then merged in alongside them.
+          find pages -mindepth 1 -maxdepth 1 ! -name .git ! -name projects -exec rm -rf {} +
+          rsync -a out/ pages/
+
+          cd pages
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing changed; skipping the commit."
+            exit 0
+          fi
+
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m "Deploy ${GITHUB_SHA::7}"
+          git push origin HEAD:gh-pages

@@ -19,8 +19,9 @@ export const CONTACT_FIELDS = ['name', 'email', 'phone', 'message'] as const;
 export type ContactField = (typeof CONTACT_FIELDS)[number];
 
 /**
- * One schema, used by both the browser and the API route — the client cannot
- * drift from what the server accepts.
+ * The submission is validated in the browser before it is handed to Formspree,
+ * so a problem is reported inline on the offending field instead of coming
+ * back as a generic provider error.
  */
 export const contactSchema = z
   .object({
@@ -32,10 +33,9 @@ export const contactSchema = z
     /**
      * Honeypot. Real people never see this field, so anything in it is a bot.
      *
-     * Deliberately permissive: rejecting it here would answer 422 and tell the
-     * bot the submission failed, which is exactly the feedback a honeypot is
-     * meant to withhold. The route accepts the request and answers "sent"
-     * instead, then drops it.
+     * Deliberately permissive: flagging it as invalid would tell the bot the
+     * submission failed, which is exactly the feedback a honeypot is meant to
+     * withhold. The form shows the success state instead and sends nothing.
      */
     company: z.string().max(500).optional(),
   })
@@ -65,14 +65,3 @@ export function collectFieldErrors(error: z.ZodError): ContactFieldErrors {
 
   return fields;
 }
-
-export type ContactResponse =
-  | { status: 'sent' }
-  /** Delivery is not configured on this deployment — the UI offers mailto instead. */
-  | { status: 'unconfigured' }
-  | {
-      status: 'error';
-      message: 'invalid_json' | 'invalid_payload' | 'rate_limited' | 'delivery_failed';
-      /** Present for `invalid_payload`, so the UI can mark the offending inputs. */
-      fields?: ContactFieldErrors;
-    };

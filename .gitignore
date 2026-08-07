@@ -34,11 +34,3 @@ yarn-error.log*
 .vscode/*
 !.vscode/extensions.json
 .idea
-
-# vercel
-.vercel
-
-# Original Claude design export — kept locally as a reference for how the site
-# was derived. Not published: it is 6MB and its uploads/ folder holds
-# screenshots of a third-party template that are not ours to redistribute.
-/design-source

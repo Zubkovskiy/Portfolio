@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { ImageIcon } from 'lucide-react';
-import { cx } from '@/lib/utils';
+import { cx, withBasePath } from '@/lib/utils';
 import styles from './ImageSlot.module.css';
 
 export type ImageSlotProps = {
@@ -40,7 +40,9 @@ export function ImageSlot({
     <div className={cx(styles.slot, className)}>
       {src ? (
         <Image
-          src={src}
+          /* Unoptimized images are served from `src` verbatim, and next/image
+             does not add the deployment's base path to it. */
+          src={withBasePath(src)}
           alt={alt ?? caption}
           fill
           sizes={sizes}

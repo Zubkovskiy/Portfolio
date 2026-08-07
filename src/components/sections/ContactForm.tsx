@@ -7,7 +7,6 @@ import {
   contactSchema,
   type ContactField,
   type ContactFieldErrors,
-  type ContactResponse,
 } from '@/lib/contact-schema';
 import type { Dictionary } from '@/lib/i18n';
 import { siteConfig } from '@/lib/site';
@@ -25,6 +24,25 @@ type Fields = {
   company: string;
   interest: string;
 };
+
+/**
+ * Formspree endpoint the submission is posted to.
+ *
+ * The site is a static export with no backend of its own, so the form talks to
+ * Formspree from the browser. Formspree shows people a full URL
+ * (`https://formspree.io/f/abcd1234`), so that is what tends to get pasted into
+ * the variable — accepting either the bare id or the whole URL avoids a doubled
+ * path that fails with a confusing 404 at the first real submission.
+ *
+ * Left empty, the form falls back to a prefilled mailto: link.
+ */
+const FORMSPREE_ENDPOINT = (() => {
+  const raw = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT?.trim();
+  if (!raw) return '';
+
+  const id = raw.replace(/\/+$/, '').split('/').pop();
+  return id ? `https://formspree.io/f/${id}` : '';
+})();
 
 /** Builds the mailto: fallback used when no delivery provider is configured. */
 function buildMailto(fields: Fields): string {
@@ -82,13 +100,14 @@ function Spinner() {
 /**
  * Contact form.
  *
- * Validates in the browser against the same zod schema the API uses, so a
- * problem is reported inline on the offending field instantly — the previous
- * version posted first and answered every rejection with one generic
+ * Validates in the browser against the zod schema before anything leaves the
+ * page, so a problem is reported inline on the offending field instantly — the
+ * previous version posted first and answered every rejection with one generic
  * "something went wrong", which told the visitor nothing about what to fix.
  *
- * Falls back to a prefilled mailto: link when no delivery provider is
- * configured, so the form is never a dead end.
+ * Delivery goes straight to Formspree; the site is a static export and has no
+ * backend of its own. Falls back to a prefilled mailto: link when no provider
+ * is configured or the request never lands, so the form is never a dead end.
  */
 export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
   const copy = contact.form;
@@ -166,39 +185,49 @@ export function ContactForm({ contact }: { contact: Dictionary['contact'] }) {
 
     setFieldErrors({});
     setMissingContact(false);
+
+    // Honeypot filled — show success and send nothing, so the bot learns nothing.
+    if (fields.company) {
+      setStatus('sent');
+      form.reset();
+      setInterest('');
+      return;
+    }
+
+    // No provider configured: offer the mail client instead of a dead end.
+    if (!FORMSPREE_ENDPOINT) {
+      setMailtoUrl(buildMailto(fields));
+      setStatus('unconfigured');
+      return;
+    }
+
     setStatus('submitting');
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(fields),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: fields.name,
+          // Formspree uses `email` as the reply-to address on the notification.
+          email: fields.email,
+          phone: fields.phone,
+          interest: fields.interest,
+          message: fields.message,
+          _subject: `Portfolio inquiry from ${fields.name}`,
+        }),
       });
 
-      const result = (await response.json()) as ContactResponse;
-
-      if (result.status === 'sent') {
+      if (response.ok) {
         setStatus('sent');
         form.reset();
         setInterest('');
         return;
       }
 
-      if (result.status === 'unconfigured') {
-        setMailtoUrl(buildMailto(fields));
-        setStatus('unconfigured');
-        return;
-      }
-
-      if (result.message === 'rate_limited') {
+      // Formspree throttles a form that is being hammered.
+      if (response.status === 429) {
         setStatus('rate-limited');
-        return;
-      }
-
-      // The server rejected fields the client accepted — surface them anyway.
-      if (result.message === 'invalid_payload' && result.fields) {
-        setFieldErrors(result.fields);
-        setStatus('idle');
         return;
       }
 

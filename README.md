@@ -10,12 +10,12 @@ Built from the Zubkivskiy design system: near-black surfaces, a single lime acce
 
 | Layer      | Choice                                        | Why                                                                     |
 | ---------- | --------------------------------------------- | ----------------------------------------------------------------------- |
-| Framework  | Next.js 15 (App Router) + React 19            | Static pre-rendering per locale, real URLs for EN/UA, an API route       |
+| Framework  | Next.js 15 (App Router) + React 19            | Static pre-rendering per locale, real URLs for EN/UA, exports to plain files |
 | Language   | TypeScript, `strict` + `noUncheckedIndexedAccess` | The content dictionary is type-enforced across both languages        |
 | Styling    | CSS Modules + design tokens                   | Zero runtime cost; hover/focus stay in CSS, not React state              |
 | Icons      | `lucide-react`                                | Tree-shaken per icon instead of a ~400 KB CDN bundle                     |
 | Fonts      | `next/font/google`                            | Self-hosted at build time — no CDN request, no render-blocking `@import` |
-| Validation | `zod`                                         | One schema shared by the browser and the API route                       |
+| Validation | `zod`                                         | The contact form is checked before anything leaves the page              |
 
 No CSS framework, no animation library, no state manager — the design system is token-based and the motion is CSS-driven, so neither would have earned its bytes.
 
@@ -25,15 +25,15 @@ No CSS framework, no animation library, no state manager — the design system i
 
 ```bash
 npm install
-cp .env.example .env.local   # optional — see "Contact form" below
-npm run dev                  # http://localhost:3000
+npm run dev                  # http://localhost:3000/en
 ```
+
+`next dev` reads `.env`, so it runs without a base path at the domain root. `npm run build` reads `.env.production` on top of it and produces the GitHub Pages build in `out/`.
 
 | Script              | Does                                          |
 | ------------------- | --------------------------------------------- |
 | `npm run dev`       | Dev server with hot reload                    |
-| `npm run build`     | Production build                              |
-| `npm start`         | Serve the production build                    |
+| `npm run build`     | Static export into `out/`                     |
 | `npm run typecheck` | `tsc --noEmit`                                |
 | `npm run lint`      | ESLint                                        |
 | `npm run check`     | Typecheck + lint — run this before committing |
@@ -51,7 +51,6 @@ src/
 │   │   ├── PersonJsonLd.tsx     # schema.org Person markup
 │   │   ├── not-found.tsx
 │   │   └── cv/                  # Print-ready A4 CV
-│   ├── api/contact/route.ts     # Contact form endpoint
 │   ├── robots.ts
 │   └── sitemap.ts
 │
@@ -70,14 +69,14 @@ src/
 │   ├── contact-schema.ts
 │   └── utils.ts
 │
-├── styles/
-│   ├── tokens/                  # colors · typography · spacing · effects
-│   ├── animations.css           # Every keyframe, in one place
-│   └── globals.css              # Reset, focus, utilities, reduced-motion
-│
-└── middleware.ts                # `/` → `/en` or `/ua` via Accept-Language
+└── styles/
+    ├── tokens/                  # colors · typography · spacing · effects
+    ├── animations.css           # Every keyframe, in one place
+    └── globals.css              # Reset, focus, utilities, reduced-motion
 
-design-source/                   # Original Claude design export — local only, git-ignored
+public/
+├── cv/                          # The downloadable CV, one PDF per locale
+└── index.html                   # `/` → `/en` or `/ua` from navigator.language
 ```
 
 ### Where to change things
@@ -101,6 +100,7 @@ design-source/                   # Original Claude design export — local only,
 | ------------------------------ | ------------------------------------------------ |
 | Any text, in either language   | `src/lib/i18n/dictionaries/{en,ua}.ts`           |
 | Email, phone, social links     | `src/lib/site.ts`                                |
+| The downloadable CV            | Replace the PDF in `public/cv/` (keep the filename) |
 | Colours, spacing, radii, motion | `src/styles/tokens/`                            |
 | A section's layout             | `src/components/sections/<Name>.tsx` + its `.module.css` |
 
@@ -120,29 +120,15 @@ Note: the URL segment is `ua` (matching the original design), while `<html lang>
 
 ## Contact form
 
-`POST /api/contact` validates with the shared zod schema, rate-limits per IP (5 requests / 10 min, in-memory), and drops anything that fills the honeypot field.
-
-Two delivery providers are supported; set up whichever you prefer.
-
-**Formspree** — quickest, nothing to own:
+The site is a static export with no backend, so the form posts straight to **Formspree** from the browser. Before anything is sent it is validated against the zod schema in `src/lib/contact-schema.ts`, and a filled honeypot field is answered with the success state and quietly dropped.
 
 ```bash
-FORMSPREE_FORM_ID=xdkoglqw   # just the id from https://formspree.io/f/<id>
+NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/<id>   # the id alone works too
 ```
 
-**Resend** — for when you have a domain:
+That value is public by definition — `NEXT_PUBLIC_*` is inlined into the bundle every visitor downloads — so it lives in `.env.production` rather than in a secret. Formspree endpoints are designed to be posted to from the browser and carry their own spam controls.
 
-```bash
-RESEND_API_KEY=re_...
-CONTACT_FROM_EMAIL=portfolio@yourdomain.com   # on a domain verified with Resend
-CONTACT_TO_EMAIL=zubkovvsbogdan@gmail.com
-```
-
-Both are called **server-side** from the route, not from the browser, so the honeypot, the schema and the rate limiter apply either way — and the form id never ships to the client, which is what stops bots from posting to your Formspree endpoint directly.
-
-**Without either variable the form still works.** The route answers `unconfigured` and the UI offers a pre-filled `mailto:` link — so the form is never a dead end, and it never silently swallows a message.
-
-The in-memory rate limiter is per-instance. If this is ever deployed across several instances, swap it for Upstash/Redis.
+**Without the variable the form still works.** It falls back to a pre-filled `mailto:` link — so the form is never a dead end, and it never silently swallows a message. The same fallback appears when the request itself fails.
 
 ---
 
@@ -177,11 +163,24 @@ What changed relative to the design export, and why:
 
 ## Deployment
 
-Deploys to Vercel as-is. On other hosts, run `npm run build && npm start` on Node ≥ 20.9.
+The site builds to a fully static export (`output: 'export'`) and is published to **GitHub Pages** at <https://zubkovskiy.github.io/Portfolio/>. Pushing to `master` runs `.github/workflows/deploy.yml`, which typechecks, lints, builds and pushes `out/` to the `gh-pages` branch.
 
-Set `NEXT_PUBLIC_SITE_URL` to the production origin — canonical URLs, `hreflang`, the sitemap and `robots.txt` are all derived from it.
+Two details that branch depends on:
 
-Static export (`output: 'export'`) is **not** used: the contact API route and the locale middleware both need a server.
+- **`projects/` is preserved.** The standalone project demos the portfolio links to are hosted on `gh-pages` itself and are not built from this repository, so the deploy step clears everything else and leaves that directory alone.
+- **`.nojekyll` is written into the output.** Without it Pages runs the site through Jekyll, which discards every directory starting with an underscore — `_next` included.
+
+Build-time configuration lives in `.env.production`; a repository variable of the same name overrides it.
+
+| Variable                         | Purpose                                                      |
+| -------------------------------- | ------------------------------------------------------------ |
+| `NEXT_PUBLIC_SITE_URL`           | Canonical URLs, `hreflang`, sitemap and `robots.txt`          |
+| `NEXT_PUBLIC_BASE_PATH`          | Sub-path the site is served from — `/Portfolio` on Pages      |
+| `NEXT_PUBLIC_FORMSPREE_ENDPOINT` | Contact form delivery                                         |
+
+Serving from a domain root instead? Clear `NEXT_PUBLIC_BASE_PATH` and point `NEXT_PUBLIC_SITE_URL` at the new origin; nothing else changes.
+
+Because the host only serves files, the security headers this project used to set in `next.config.ts` are gone — a static host cannot send them. Behaviour that used to need a server was replaced rather than dropped: the locale redirect moved to `public/index.html`, and the contact form talks to Formspree directly.
 
 ---
 
