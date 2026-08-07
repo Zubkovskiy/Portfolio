@@ -7,19 +7,11 @@
     <meta name="robots" content="noindex" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
 
-    <!--
-      Every page lives under a locale segment (/en, /ua). This file is the only
-      thing at the root, and it forwards to one of them.
-
-      A static host cannot read Accept-Language, so the choice is made here from
-      navigator.language instead — the browser-side equivalent of the middleware
-      this replaced. All URLs are relative so the page works whether the site is
-      served from a domain root or from a /Portfolio sub-path.
-    -->
+    <!-- Forwards the bare root to a locale. Relative URLs, so this works from a
+         domain root or from the /Portfolio sub-path alike. -->
     <script>
       (function () {
         var tag = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
-        // 'uk' is the language tag for Ukrainian; the URL segment for it is 'ua'.
         var isUk = /^(uk|ua|ru)\b/i.test(tag);
         location.replace(isUk ? './ua/' : './en/');
       })();
