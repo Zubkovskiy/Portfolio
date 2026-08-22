@@ -13,6 +13,10 @@
   opacity: 1;
 }
 
+.cursor[data-native='true'] {
+  opacity: 0;
+}
+
 .svg {
   display: block;
   overflow: visible;

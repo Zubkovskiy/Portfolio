@@ -4,7 +4,8 @@ import { useEffect, useRef } from 'react';
 import { clamp } from '@/lib/utils';
 import styles from './CustomCursor.module.css';
 
-const HOVER_SELECTOR = 'a, button, input, textarea, select, [data-cursor-hover]';
+const HOVER_SELECTOR = 'a, button, [data-cursor-hover]';
+const NATIVE_SELECTOR = 'input, textarea, select, [data-cursor-native]';
 const MAX_TILT_DEG = 12;
 
 export function CustomCursor() {
@@ -67,8 +68,10 @@ export function CustomCursor() {
     };
 
     const handleOver = (event: PointerEvent) => {
-      const interactive = (event.target as Element | null)?.closest(HOVER_SELECTOR);
-      cursor.dataset.hover = interactive ? 'true' : 'false';
+      const target = event.target as Element | null;
+      const native = target?.closest(NATIVE_SELECTOR);
+      cursor.dataset.native = native ? 'true' : 'false';
+      cursor.dataset.hover = !native && target?.closest(HOVER_SELECTOR) ? 'true' : 'false';
     };
 
     const handleLeave = () => {

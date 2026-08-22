@@ -11,7 +11,7 @@ export const siteConfig = {
   contact: {
     email: 'zubkovvsbogdan@gmail.com',
     phone: '+380 63 778 11 44',
-    city: 'Chernihiv',
+    city: 'Brovary',
     country: 'Ukraine',
     countryCode: 'UA',
   },

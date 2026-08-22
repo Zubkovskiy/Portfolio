@@ -34,6 +34,10 @@
   color: var(--text-muted);
 }
 
+.control:hover:not(:disabled):not(:focus) {
+  border-color: var(--accent);
+}
+
 .control:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-soft-2);

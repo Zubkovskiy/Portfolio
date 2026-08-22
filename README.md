@@ -1,6 +1,6 @@
 # Zubkivskiy — Portfolio
 
-Bilingual (EN/UA) portfolio and CV for **Bohdan Zubkivskiy** — frontend developer & AI automation specialist, Chernihiv, Ukraine.
+Bilingual (EN/UA) portfolio and CV for **Bohdan Zubkivskiy** — frontend developer & AI automation specialist, Brovary, Ukraine.
 
 Live at <https://zubkovskiy.github.io/Portfolio/>
 

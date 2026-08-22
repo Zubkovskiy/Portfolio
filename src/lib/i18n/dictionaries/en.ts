@@ -4,16 +4,16 @@ export const en: Dictionary = {
   meta: {
     title: 'Bohdan Zubkivskiy — Frontend Developer & AI Automation Specialist',
     description:
-      'Frontend developer and AI automation specialist based in Chernihiv, Ukraine. I build fast, clean interfaces with React, Next.js and TypeScript, and practical AI-driven automations.',
+      'Frontend developer and AI automation specialist based in Brovary, Ukraine. I build fast, clean interfaces with React, Next.js and TypeScript, and practical AI-driven automations.',
     ogDescription:
-      'Frontend developer & AI automation specialist based in Chernihiv, Ukraine. React · Next.js · TypeScript · AI automation.',
+      'Frontend developer & AI automation specialist based in Brovary, Ukraine. React · Next.js · TypeScript · AI automation.',
     keywords: [
       'frontend developer',
       'React developer',
       'Next.js',
       'TypeScript',
       'AI automation',
-      'Chernihiv',
+      'Brovary',
       'Ukraine',
       'Bohdan Zubkivskiy',
     ],
@@ -353,13 +353,13 @@ export const en: Dictionary = {
       statusShort: 'Open to work',
     },
     info: {
-      address: 'Chernihiv, Ukraine',
+      address: 'Brovary, Ukraine',
       availability: 'Available for freelance & remote work',
     },
   },
 
   footer: {
-    tagline: 'Frontend developer & AI automation specialist based in Chernihiv, Ukraine.',
+    tagline: 'Frontend developer & AI automation specialist based in Brovary, Ukraine.',
     navTitle: 'Navigation',
     contactTitle: 'Contact',
     ctaTitle: "Have a project in mind? Let's talk about it",
